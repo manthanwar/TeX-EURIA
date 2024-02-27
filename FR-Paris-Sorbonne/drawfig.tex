@@ -1,0 +1,40 @@
+\documentclass[a4paper,11pt]{article}
+%-------------------------------------------------------------------------------
+\paperwidth     = 210mm     %% 597pt     %% = 8.5in
+\paperheight    = 297mm     %% 845pt     %% = 11in
+\oddsidemargin  = 0mm       %% Real leftmargin = 1.0 in = 25.4 mm
+\evensidemargin = 0mm       %% Real leftmargin = 1.0 in
+\topmargin      = 0mm       %% Real topmargin = (140 - 68) / 144 = 0.5in
+\hoffset        = -5.4mm    %% offset for printer's left margin
+\voffset        = -20.4mm   %% offset for printer's top margin
+\headheight     = 3mm       %% Height of the header
+\headsep        = 7mm       %% Separation between header and main text
+\footskip       = 7mm      %% Separation between footer and main text
+\textwidth      = 170mm     %% 432pt = 6in = 152.4mm
+\textheight     = 262mm     %% 10in
+%% Letter Paper = 8.5 x 11'' = 612 x 792 pt
+%% A4 Paper     = 8.27 x 11.69'' = 597 x 845 pt = 210 x 297 mm
+%% 72pt = 1in = 25.4mm
+\pdfpagewidth  = \paperwidth  %% Width of the PDF page to create
+\pdfpageheight = \paperheight %% Height of the PDF page to create
+%-------------------------------------------------------------------------------
+\usepackage[svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{pstricks-add}
+\usepackage{pst-all}
+\usepackage{fp,xfp}
+
+
+\begin{document}
+
+\section{Draw Figure}
+
+% \input{Figures/fig-0.tex}
+
+% \input{Figures/fig-framework-model-identification.tex}
+
+\input{Figures/fig-automation-hierarchy.tex}
+
+
+\end{document}

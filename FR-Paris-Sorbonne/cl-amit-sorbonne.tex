@@ -1,0 +1,538 @@
+%===============================================================================
+% File Name     : <Lab_Manual_Fuel_Cell_PEM.tex>
+% Description   : Laboratory Manual for PEM Fuel Cell System
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Office        : Imperial College London
+% Mailer        : amit@imperial.ac.uk
+% Caller        : +44.207.594.6632
+% Mobile        : +44.795.461.7111
+% WebURL        : www.imperial.ac.uk
+%-------------------------------------------------------------------------------
+% Copyright     : ©2012 Amit Manohar Manthanwar
+% License       : Restricted Copyleft
+%===============================================================================
+%---------------+---------+----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 21-Feb-2012   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+% arara: latex: { options: ['--synctex=1']}
+% arara: bibtex: { options: [ '-terse' ] }
+% arara: --> if exists(toFile('references.bib'))
+% arara: latex: { options: ['--synctex=1']}
+% arara: dvips
+% arara: ps2pdf
+% arara: clean: { extensions: [ aux, log, dvi, ps ] }
+%===============================================================================
+\documentclass[oneside,11pt,a4paper]{article}
+%-------------------------------------------------------------------------------
+\RequirePackage{amsmath,amssymb}
+
+\usepackage{etoolbox}
+
+\patchcmd{\subequations}{\def\theequation{\theparentequation\alph{equation}}}%
+{\def\theequation{\theparentequation--\arabic{equation}}}{}{}
+
+% \numberwithin{equation}{subsection}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\E}{E}
+
+\RequirePackage{fancyhdr}                           % Header & Footer
+\RequirePackage[svgnames]{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{pstricks}
+\RequirePackage{pstricks-add}
+\RequirePackage{fp,xfp}
+\RequirePackage{lastpage} % do latex twice
+\RequirePackage{enumitem}
+
+\RequirePackage{titlesec}
+% \titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
+\titlespacing{\section}{0pt}{\parskip}{\dimexpr-\parskip+2mm}
+\titlespacing{\subsection}{0pt}{\parskip}{\dimexpr-\parskip+2mm}
+\titlespacing{\subsubsection}{0pt}{\parskip}{\dimexpr-\parskip}
+
+
+\RequirePackage[
+  backend=biber,
+  autolang=hyphen,
+  sorting=ydnt,
+  style=nature,
+%   style=numeric,
+  isbn = false,
+  url = false,
+  doi=false,
+  eprint = false,
+  date = year,
+  minbibnames=6,
+  maxbibnames=6,
+  mincitenames = 1,
+  maxcitenames = 2,
+]{biblatex}
+%\addbibresource{manthanwar.bib}
+% \bibliography{references}
+
+\bibliography{manthanwar,ref}
+
+\AtEveryBibitem{\clearfield{note}}
+\AtEveryBibitem{\clearname{editor}}
+\AtEveryBibitem{\clearlist{publisher}}
+% \AtEveryBibitem{\clearfield{series}}
+\AtEveryBibitem{\clearfield{volume}}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryBibitem{\clearfield{pages}}
+
+\newcommand*{\boldname}[3]{%
+    \def\lastname{#1}%
+    \def\firstname{#2}%
+    \def\firstinit{#3}}
+\boldname{}{}{}
+
+% \renewcommand{\mkbibnamegiven}[1]{\ifboolexpr{ test {\ifdefequal{\lastname}{\namepartfamily}} } {\mkbibbold{#1}}{#1} }
+
+\renewcommand{\mkbibnamefamily}[1]{\ifboolexpr{ test {\ifdefequal{\lastname}{\namepartfamily}} } {\textbf{#1}}{#1} }
+
+\RequirePackage{hyperref}
+%===============================================================================
+\hypersetup{
+    pdfauthor   ={Amit M. Manthanwar},
+    pdftitle    ={Letter by Amit M. Manthanwar},
+    pdfsubject  ={Cover Letter},
+    pdfkeywords ={Science, Engineering, Energy, Environment, Health},
+    pdfproducer ={Amit M. Manthanwar using LaTeX},
+    pdfcreator  ={Amit M. Manthanwar using pdflatex},
+    colorlinks  = true,
+    linkcolor   = black,
+    anchorcolor = teal,
+    citecolor   = black,
+    urlcolor    = teal,
+}
+%-------------------------------------------------------------------------------
+\newcommand{\urlColor}[1]{\hypersetup{urlcolor=#1}}
+%===============================================================================
+%\usepackage{cmbright}
+%\usepackage{wedn}
+%===============================================================================
+\definecolor{teal}{rgb}{0.0, 0.5, 0.5}
+\definecolor{ICBlueLight}{rgb}{0.402, 0.603, 0.787}
+\definecolor{ICBlueDark}{rgb}{0, 0.273, 0.498}
+%===============================================================================
+\newcommand{\MONTH}{%
+  \ifcase\the\month
+  \or January% 1
+  \or February% 2
+  \or March% 3
+  \or April% 4
+  \or May% 5
+  \or June% 6
+  \or July% 7
+  \or August% 8
+  \or September% 9
+  \or October% 10
+  \or November% 11
+  \or December% 12
+  \fi}
+%===============================================================================
+%-------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%|<--- \paperwidth \paperheight  --->|%
+%|<->| \hoffset                      |%
+%|   | \voffset                      |%
+%|___|____________________________ __|%
+%|   |<->| 1in + \oddsidemargin   |  |%
+%|   |<->| 1in + \evensidemargin  |  |%
+%|   |   |------------------------|  |%
+%|   |   | 1in + \topmargin       |  |%
+%|   |   |------------------------|  |%
+%|   |   | HEADER \headheight     |  |%
+%|   |   |------------------------|  |%
+%|   |   | \headsep               |  |%
+%|   |   |========================|  |%
+%|   |   | TEXT  \topskip         |  |%
+%|   |   |       \textheight      |  |%
+%|   |   |<---   \textwidth   --->|  |%
+%|   |   |                        |  |%
+%|<-1->| | \marginparwidth        |  |%
+%|   | |2| \marginparsep          |  |%
+%|   |   |                        |  |%
+%|   |   |========================|  |%
+%|   |   | \footskip              |  |%
+%|   |   |------------------------|  |%
+%|   |   | FOOTER \footheight     |  |%
+%|   |   |------------------------|  |%
+%|___|____________________________|__|%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+\paperwidth     = 210mm     %% 597pt     %% = 8.5in
+\paperheight    = 297mm     %% 845pt     %% = 11in
+\oddsidemargin  = 0mm       %% Real leftmargin = 1.0 in = 25.4 mm
+\evensidemargin = 0mm       %% Real leftmargin = 1.0 in
+\topmargin      = 0mm       %% Real topmargin = (140 - 68) / 144 = 0.5in
+\hoffset        = -5.4mm    %% offset for printer's left margin
+\voffset        = -20.4mm   %% offset for printer's top margin
+\headheight     = 3mm       %% Height of the header
+\headsep        = 7mm       %% Separation between header and main text
+\footskip       = 7mm      %% Separation between footer and main text
+\textwidth      = 170mm     %% 432pt = 6in = 152.4mm
+\textheight     = 262mm     %% 10in
+%% Letter Paper = 8.5 x 11'' = 612 x 792 pt
+%% A4 Paper     = 8.27 x 11.69'' = 597 x 845 pt = 210 x 297 mm
+%% 72pt = 1in = 25.4mm
+\pdfpagewidth  = \paperwidth  %% Width of the PDF page to create
+\pdfpageheight = \paperheight %% Height of the PDF page to create
+%-------------------------------------------------------------------------------
+% Redefine plain page style
+\fancypagestyle{plain}{
+\fancyhf{}
+%\cfoot{\bfseries{\thepage}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}}
+%-------------------------------------------------------------------------------
+% Redefine plain page style
+\fancypagestyle{fancy}{
+\fancyhf{}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\footnotesize{\copyright\the\year\ Manthanwar}}
+\cfoot{\footnotesize{Generalised AI-driven ROMs for MPC of complex flows}}
+\rfoot{\textcolor{black}{\footnotesize{Page \thepage{} of \pageref{LastPage}}}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+%-------------------------------------------------------------------------------
+% Redefine plain page style
+\fancypagestyle{letterhead}{
+\fancyhf{}
+%\lhead{\bfseries{\textsf{\huge{\textcolor{teal}{MANTHANWAR}}}}}
+\lfoot{\textcolor{teal}{\textsf{Generalised AI-driven Models \textrm{\emph{\&}} Model Predictive Control}}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+%===============================================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+\setlength{\jot}{0mm}
+%\setlength{\baselineskip}{30pt}
+%-------------------------------------------------------------------------------
+%\raggedbottom
+%===============================================================================
+\newenvironment{ppl}{\fontfamily{ppl}\selectfont}{\par}
+%\newenvironment{wedn}{\fontfamily{wedn}\selectfont}{\par}
+%===============================================================================
+%\title{A Small \LaTeX{} Article Template\thanks{To your mother}}
+%\author{Your Name  \\
+%	Your Company / University  \\
+%	\and
+%	The Other Dude \\
+%	His Company / University \\
+%	}
+%-------------------------------------------------------------------------------
+\date{\today}
+% Hint: \title{what ever}, \author{who care} and \date{when ever} could stand
+% before or after the \begin{document} command
+% BUT the \maketitle command MUST come AFTER the \begin{document} command!
+%-------------------------------------------------------------------------------
+%===============================================================================
+\begin{document}
+%\maketitle
+\thispagestyle{letterhead}
+\pagestyle{fancy}
+\newlength{\fromboxlength}
+\settowidth{\fromboxlength}{\textbf{Amit M Manthanwar}}
+%===============================================================================
+\vspace*{-20mm}
+\begin{flushright}
+    %\begin{minipage}[t]{40mm}
+    \begin{minipage}[t]{\dimexpr\fromboxlength-5mm}
+        %\begin{flushright}
+        \fontsize{9}{11pt}\usefont{OT1}{cmss}{m}{n}{
+            %Global Research Center\\\\
+            3 Sterling Apartment\\[0mm]
+            Warje, Pune 411058\\[2mm]
+            % , Maharashtra\\INDIA
+            %+91.852.081.3398\\[0mm]
+            manthanwar@hotmail.com\\[4mm]}
+        %\href{https://manthanwar.github.io}{manthanwar.github.io}\\[2mm]}
+        \fontsize{11}{11pt}\usefont{OT1}{cmss}{m}{n}{\textbf{Amit M Manthanwar\\}}
+        \fontsize{7}{11pt}\usefont{OT1}{cmss}{m}{n}{MS Chemical Engineering\\[1mm]}
+        %\fontsize{9}{11pt}\usefont{OT1}{cmss}{m}{n}{Chief Technology Officer\\}
+        \fontsize{8}{11pt}\usefont{OT1}{cmss}{m}{n}{Systems Thinker \textrm{\emph{\&}} Innovator\\}
+        %\end{flushright}
+    \end{minipage}
+\end{flushright}
+%===============================================================================
+\vspace*{-26mm}
+\the\day\ \MONTH\ \the\year\\\\
+%===============================================================================
+%\begin{minipage}[t]{100mm}
+%\fontsize{11}{11pt}\usefont{OT1}{cmss}{m}{n}{\textbf{John Smith}}
+%\fontsize{7}{11pt}\usefont{OT1}{cmss}{m}{n}{\\}
+%\fontsize{9}{11pt}\usefont{OT1}{cmss}{m}{n}{Chief Executive Officer\\\\}
+%\fontsize{9}{11pt}\usefont{OT1}{cmss}{m}{n}{
+%3 Sterling Apartment\\
+%Warje, Pune, Maharashtra, INDIA 411058\\
+%+91.123.123.1234 $\bullet$ manthanwar@hotmail.com}
+%\end{minipage}
+%-------------------------------------------------------------------------------
+{\textbf{Selection Committee}}\\[-1mm]
+{{\scriptsize{SOUND.AI}}\\[1mm]
+%\footnotesize{SOrbonne University for a New Deal on Artificial Intelligence (SOUND.AI)}\\[-1mm]
+Sorbonne Université\\[-1mm]
+21, rue de l'école de médecine, 75006 Paris}\\[8mm]
+%===============================================================================
+Re: Generalised AI-driven reduced-order model for model predictive control of complex flows\\[8mm]
+%Sorbonne Université SOUND.AI PhD titled g
+%===============================================================================
+%===============================================================================
+\baselineskip = 14pt
+\setlength{\parskip}{10pt}
+%===============================================================================
+Dear Selection Committee,
+
+%\section*{Introduction}
+
+System design, including system modeling (digital twinning), model synthesis (efficient context-aware solutions), and model analysis (what if scenario simulations) using intelligence algorithms, is an active area of research that lies at the interfaces of science, engineering, and information and computing technology. The development of intelligent systems in the form of digital twin concepts that can be effectively monitored and controlled in real-time using advanced algorithms is one of the grand challenges of robust system design. Towards that goal, the development of reduced order models (ROMs) of complex flows that can operate on different spatiotemporal scales and dynamically interact with other systems and underlined subsystems in ways that change with context from the point of view of design (modelling), operation (control), and management (troubleshooting) are the ultimate objectives of my research career.
+
+
+\textbf{What is a digital twin?}\\[0mm]
+Fully validated mathematical abstractions of physical systems are called models. Models are further classified as first-principled grey-box models when near-complete information about the system is available. When the complete knowledge of the system is not available and models are derived from the system's input-output information only, then they are called black-box models.  Models are developed at various length-time scales, ranging from the micro-level fundamental understanding of underlined phenomena to a system's plant-level efficient operation to its enterprise-level broader supply chain perspective. Models become digital twins when one-to-one, one-to-many, and many-to-many models interact with the real system operating in a network-connected cyber-physical environment. These deeply intertwined digital twin models or clones of real systems can contribute to design innovation and informed or actionable decision-making. Models are fundamental to implementing model predictive control. However, model development is a complex and computationally expensive task. Generalised AI-driven reduced-order modelling techniques can offer significant benefits to industry for the rapid adaptation of model predictive technology and the complex analysis of dynamical phenomena.
+%The data-driven models lie somewhere in between, depending on the insights they offer based on the available knowledge of the system under study.
+% (physical, chemical, biological, electrical, mechanical, etc.)
+
+\textbf{What are the skills required to create digital twins?}\\[0mm]
+One must have theoretical knowledge of the underlined process phenomena as well as the ability to experimentally study the system under consideration. In addition, a deep understanding of systems engineering concepts such as modelling, optimisation, and control, combined with experience in software development and cloud computing technologies, is essential to developing digital twins. Clearly, it is a multidisciplinary challenge requiring a broad range of expertise and experience. I have a fundamental background in chemical engineering. In my past work, I have experimentally investigated fuel cell energy systems \cite{Lopes-2019}. I have contributed to the theoretical aspects of stochastic, \cite{PengMC-2005, ChmielewskiM-2004, ChmielewskiPM-2002-ACC} and deterministic robust, \cite{ManthanwarSP-2005-ACC, ManthanwarSP-2005-IFAC} model predictive control algorithms. Furthermore, I have developed industrial automation software using computing and information technologies. I have gained experience in industrial technology transfer underpinning integrated operations technology, systems engineering, and information and computing technology. My previous work has led to some creative solutions in the areas of industrial automation, \cite{Manthanwar-2009-DCS}, industrial model predictive control, \cite{Manthanwar-2008-MPC}, and smart manufacturing platform ecosystems, \cite{botcha2018implementing}. Now, I wish to build on this background by pursuing further research at Sorbonne University's SOUND.AI research centre. I have a multidisciplinary background to undertake the research project titled ``generalised AI-driven reduced-order model for model predictive control of complex flows.''
+
+I have a passion for education, research, innovation, and technology transfer. I seek this research opportunity to work at SOUND.AI and collaborate with your researchers. This opportunity will help me build a digitalisation platform ecosystem that will make ``transformative contributions to the fields of complex flows, control theory, and information science.'' Thus enabling the translation of scientific ideas into collaborative digital twin-based solutions that can have significant industry and academic impacts.
+
+I hope that you will consider my application favourably and offer me a research position with full financial assistance. I am eagerly looking forward to working closely with you and your research group to advance the current state-of-the-art, make significant contributions to systems theory, and accomplish our shared objectives of research, education, and technology transfer.\\
+
+Sincerely,\\
+Amit
+
+\vspace{4mm}
+Enclosed:
+\begin{itemize}[nosep,topsep=-4mm]
+    \item Europass CV
+    \item Degree Certificates
+    \item Identification Document
+    \item Personal Research Statement (see below, an addendum to this letter)
+\end{itemize}
+%=========================================================================
+\clearpage
+\pagestyle{fancy}
+\begin{center}
+    \small{\textsc{Research Statement}}\\[4mm]
+    \huge{Generalised AI-driven Reduced-Order Model for Model Predictive Control of Complex Flows}\\[8mm]
+    \large{Amit Manohar Manthanwar}
+\end{center}
+
+\begin{abstract}
+    Reduced-order models (ROMs) are computationally attractive mathematical abstractions of real systems. They are useful in rapid prototyping, real-time analysis, predictive maintenance, and control system design. While they may be fast and computationally inexpensive themselves, their construction can, however, be computationally expensive as it requires the collection of a large number of system responses to input excitations under the influence of known or unknown disturbances. This data-gathering activity is called the design of experiments. It is often performed in open-loop to capture high-fidelity system dynamics. However, closed-loop system identification and, preferably, adaptive control techniques are desired from a practical standpoint. Furthermore, the resulting models need to be robust with respect to the influence of deterministic and stochastic uncertainty. This research focuses on developing robust and predictable ROMs of complex flows using generalised artificial intelligence (AI) techniques. The resulting algorithms and tools developed in this research work will be rigorously tested on real-world industrial case studies.
+\end{abstract}
+
+
+\section{Introduction}
+Since ancient times, it has been understood that everything flows: $\pi\acute{\alpha}\nu\tau\alpha$ $\grave{\rho}\varepsilon\tilde{\iota}$, \cite{beris2014}. The specific context is the flow of liquids and the deformation of solids. If material flows, then the flow can be influenced and controlled in a desired manner. The ambitious aim of this research is to study complex flows underpinning topics to (a) model everything that flows: $\mu$o$\nu\tau\acute{\varepsilon}\lambda$ $\pi\acute{\alpha}\nu\tau\alpha$ $\grave{\rho}\varepsilon\tilde{\iota}$ and (b) control everything that flows: $\varepsilon\lambda\acute{\varepsilon}\gamma\xi\tau\varepsilon$  $\pi\acute{\alpha}\nu\tau\alpha$ $\grave{\rho}\varepsilon\tilde{\iota}$.
+
+
+Many foodstuffs, pharmaceuticals, cosmetics, and chemicals are classified as complex fluids. They defy the classical definitions of solids, liquids, and gases. Their structure and flow behaviours are dramatically different from those of simple fluids. Simple fluids are uniform in molecular structure and flow freely without significantly changing their viscosity. On the other hand, complex fluids are mixtures coexisting between multiple phases involving multiple length scales, \cite{larson1999structure}. They exhibit complex behaviour as a result of a non-linear relationship between stress and deformation. They are ubiquitous in nature and omnipresent in industry as engineered materials. Some of the two-phase examples are: solid--liquid (colloids, polymers, micellar solutions), solid--gas (granular materials, aerogels), liquid-gas (aerosols, sprays, foams), or liquid--liquid (emulsions). Their evolution due to internal dynamics, external stresses, applied physical, chemical, or biological stimuli, electrical or magnetic fields, or even thermal variations significantly affects their material properties, rheology, and hydrodynamic behaviour. Their complex inner workings with regards to how the microscopic structures affect the macroscopic behaviours are not well understood. This information is crucial to achieving uniform product quality and high yields during their manufacturing and processing.
+
+Modelling is an active area of research to optimally design complex fluids and control their behaviour. Modelling can assist in the formulation, characterisation, manipulation, and processing of complex fluids. The analytical models can assist in gaining new material property insights and understanding complex process phenomena. However, the simulations of such high-fidelity models are computationally expensive due to the multiple time and length scales involved. Alternatively, the study of complex fluids and their flows using empirical models can offer several benefits over their fundamental analytical counterparts, especially in developing control theoretics. The rigorously validated reduced order models can assist in developing advanced control strategies in natural and engineered environments. Reduced order models (ROMs) can significantly reduce computational resources, costs, and storage requirements; obfuscate complex multi-dimensional phenomenological and molecular material proprietary models; and significantly speed up the process development cycles, allowing for fast prototyping and multiple queries. In industrial applications, they offer direct economic benefits to manufacturing engineered materials of desired properties safely and sustainably in a process system tuned by efficient model-based predictive control strategies.
+
+Although the ROMs offer attractive benefits of the approximate low computational cost models of the full-scale high-fidelity system, they need to be robust and predictive, representing the underlined process phenomena, however abstract that may be. This requirement is not always guaranteed, especially when applied to highly uncertain and nonlinear dynamics. In this context, data-driven models have proven to be unreliable in reconstructing the long-term behaviour of the analytical system. They lack robustness to changes in operating conditions, unknown disturbances, and known or unknown input parameters (i.e., generalisability). In this project, we aim to address the lack of generalisability by relying on operator learning strategies and creating parametric mapping in the reduced space. Physical constraints will be added to the learning framework to reduce the amount of data required for training. Finally, by relying on physics-aware clustering techniques, the model will be locally adapted and informed by the dynamics of the underlying system.
+
+
+
+\section{Methodology}
+A dynamic matrix is a multi-variable dynamic relationship of a process between its multiple process inputs and multiple process outputs operating under the influence of process uncertainty. With the advent of digital computers, dynamic matrix control first appeared in the 1980s in oil companies as an advanced control method. It enabled the solving of complex control problems that were not solvable by the traditional proportional integral-derivative (PID) type of single-input, single-output control. \cite{cutler1980dynamic, qin2003survey}. In industry, DMC became the de facto supervisory control strategy to regulate the low-level control loops. Since then, due to its economic benefits and computational attractiveness, it has become the major workhorse for industrial process control. The modern theoretical formulations were further developed and related to the optimal control methods introduced by Kalman in the 1960s using generalised performance indexes, \cite{kalman1958optimal, kalman1960contributions}, called the linear quadratic regulator (LQR), \cite{bryson1996optimal}. The new developments were appropriately termed model-based predictive control or simply model predictive control (MPC), \cite{kouvaritakis2016model, rawlings2017model}.
+
+In our previous work, we investigated Kalman's longstanding question, \cite{kalman1964}. Our solution to the constrained LQR problem thus laid the foundations for the tuning of MPC, \cite{ChmielewskiM-2004}. MPC has revolutionised the industry, with a major emphasis on the identification of the underlined system and subsystem models. There are two broad approaches to modelling: the first principles and the data-driven techniques. Since the underlined complex phenomena are often unknown or difficult to model, there is an increasing need for developing generalised model identification techniques.
+
+
+Building a deep learning artificial intelligence (AI) system that has the ability to learn from large-scale datasets is the main goal of this research work towards developing and further advancing the science of data-driven modelling and techniques therein. To achieve that goal, in the early stages of the project, in the first six months, we will carry out an exhaustive literature review. After systematically exploring the current state-of-the-art in the literature, we will deliver a survey paper along with a detailed internal review report outlining specific problem statements, their solution approaches, and the key challenges in resolving them. This early period will also be used to acquire new theoretical knowledge of the generalised AI and build all other necessary skillsets towards developing the proposed generalised AI for developing ROMs.
+
+Apart from undertaking relevant coursework and study material, timely assistance from the project supervisors and mentorship from the project collaborators will be sought during these early stages. Next, by the end of the first year of the project, we will introduce a novel generalised AI framework for generating the proposed ROMs. Our framework will first be tested on an unconstrained system. These results will be published as a first set of theoretical results under the novel framework for generalised ROMs with architecture for unconstrained systems using small, manageable examples.
+
+Then, in the second year of the project, we will strengthen the proposed architecture by incorporating the physical constraints. We will publish these results as the second set of theoretical results on the integrated architecture. This will be achieved using a deep search policy framework and algorithms therein. This algorithm will be tested on a small-scale problem to build the necessary and sufficient theoretical foundations. A supplementary paper will be published on a larger problem to demonstrate the benefits of newly developed search algorithms.
+
+Afterwards, this new modelling framework will be ready to incorporate two types of disturbances: stochastic and deterministic. The stochastic disturbances signify the best-case routine operating scenarios, resulting in classical covariance-constrained probabilistic measures. While the deterministic disturbances will signify the worst-case operating scenarios from the safety-enabled systems point of view, This will result in an industrial multi-layer system where a safety system as a deterministic worst-case feedforward control system is always present on top of the traditional feedback regulatory/supervisory industrial control strategy.
+
+Finally, in the final stages of the project, we will evaluate the effectiveness of the proposed modelling framework and valorise the results by solving multiple variants of real-world engineering design problems. This will enable us to rigorously test and explore the reduced order space for robustness and expected predictability. These results will be published. The algorithms will be coded into software libraries using C++ and Python. Tools will be made available as open-source software, along with sample datasets. The detailed user guides from the point of view of cloud-enabled intelligent analytics and AI-driven cyber-physical systems, also known as smart manufacturing, \cite{davis2015smart,davis2012smart, botcha2018implementing}, or more popularly Industry 4.0, \cite{liu2017industry, zheng2018smart, ghobakhloo2020industry}, will be published for online/offline training and knowledge transfer purposes.
+
+To lay the strong foundations for future research, a proposed modelling framework will be adopted for incorporating closed-loop data for system identification. \cite{forssell1999closed, van2013closed}. Typically, data for system identification is collected by opening the control loops. However, for the fear of violating constraints or for safety reasons, the industry is reluctant to open up the control loops and let the plant undergo design experiments for system identification. There is a strong correlation between the unmeasurable noise and the input when the feedback loops are active. We will look into these issues and propose creative approaches for the optimal design of experiments. Efforts will be made to develop adaptive control strategies where ROM and control policy are simultaneously designed. \cite{aastrom2008adaptive, landau2011adaptive}. Using a variety of data gathering techniques, especially in the context of Industry 5.0, \cite{mourtzis2022literature,xu2021industry}, we will propose a new framework that can identify ROMs in a closed-loop setting with Industry 4.0 performance requirements and emerging Industry 5.0 sustainability and human-and-machine-in-the-loop scenarios that are more geared towards AI.
+
+\section{Problem Statements}
+The goal of this work is to develop a generalised AI-driven model to improve speed and performance by reducing the computational complexity and storage requirements that preserve the expected fidelity of the real system. The system under study is a complex flow. The problem can be stated as follows: given,
+\begin{itemize}[nosep,topsep=-4mm]
+    \item the real system or alternatively its equivalent high-fidelity model described by a set of differential and algebraic equations (DAEs) along with appropriate initial conditions
+    \item the reduced order model described either by the continuous or discrete-time dynamical system (e.g, linear, polytopic, hybrid)
+    \item a set of path and/or interior-point and endpoint constraints for feasible and stable process operation (such as product specifications, safety constraints, operating conditions, actuator limits, stability criteria, etc.)
+    \item the description of the uncertainty involved in the process,typically described by lower or upper bounds or probability distribution functions.
+    \item a set of control alternatives (i.e., a set of potential manipulated variables and potential measured variables together with a set of control objectives to be achieved (e.g, linear, quadratic, multi-objective, multi-level)
+    \item cost data associated with equipment, operating, and controller costs
+    \item a finite time horizon of interest
+\end{itemize}
+derive the reduced order model of the real system with minimum state and input error while ensuring feasible and stable operation over the entire time horizon under the specified uncertainty.
+
+\subsection{Conceptual Mathematical Formulation}
+The conceptual mathematical formulation of the problem for continuous systems can be stated as a high-fidelity model:
+\begin{subequations}\label{eq:model-high-fidelity}
+    \begin{eqnarray}
+        0 &=& f(\dot{x}(t),x(t), z(t), u(t), w(t), p) \\
+        0 &=& h(x(t), z(t), u(t), w(t), p)\\
+        0 &\geq& g(x(t), z(t), u(t), w(t), p)\\
+        0 &=& m(y(t), x(t), z(t), u(t))\\
+        x &\in& \mathcal{X}\\
+        y &\in& \mathcal{Y}\\
+        z &\in& \mathcal{Z}\\
+        u &\in& \mathcal{U}\\
+        w &\in& \mathcal{W}\\
+        t &\in& [0, t_{f}]
+    \end{eqnarray}
+\end{subequations}
+where $t$ is time, $\dot{x}(t)$ is the vector of differential state variables, $z(t)$ is the vector of algebraic state variables, $u(t)$ is the vector of control variables (whose values can be changed during operation), $w(t)$ is the vector of uncertainty, $p$ is the vector of parameters, $f$ is the vector function of the differential equations, $h$ is the vector function of the algebraic equations, $g$ is the vector function of the inequality constraints that define the feasible operation, $m$ is the functional relationships of the measurements that map system states $x(t)$, $z(t)$ and control inputs $u(t)$ to the appropriate measured outputs $y(t)$, $\mathcal{X}$, $\mathcal{Y}$, $\mathcal{Z}$, $\mathcal{U}$, and $\mathcal{W}$ are the constraint sets, and $t_{t}$ is the final time.
+
+\subsection{Model Identification and Complexity Reduction}
+Given the real system or its high-fidelity representation given by the DAE system in equation \eqref{eq:model-high-fidelity}, the goal is to solve the optimisation problem:
+\begin{subequations}\label{eq:model-identification}
+    \begin{eqnarray}
+        \textrm{minimise} \;\; \operatorname{J} \left[ y(t),x(t),u(t)\right]\hspace{38mm}
+    \end{eqnarray}
+    \vspace{-10mm}
+    \begin{eqnarray}
+        \textrm{subject to:\hspace{5mm}} \dot{x}(t) &=& A x(t) + B u(t) + C_{w} w(t) \hspace{10mm}\\
+        y(t) &=& C_{x} x(t) + C_{u} u(t)\\
+        0 &=& h(x(t), z(t), u(t), w(t))\\
+        0 &\geq& g(x(t), z(t), u(t), w(t))\\
+        x &\in& \mathbb{X}\\
+        y &\in& \mathbb{Y}\\
+        u &\in& \mathbb{U}\\
+        w &\in& \mathbb{W}\\
+        C_{x} &\in& \{0,1\}^{n_{y} \times n_{x}}\\
+        C_{y} &\in& \{0,1\}^{n_{y} \times n_{u}}\\
+        C_{w} &\in& \{0,1\}^{n_{x} \times n_{w}}\\
+        t &\in& [0, t_{f}]
+    \end{eqnarray}
+\end{subequations}
+where time $t$, $x(t)$ is the vector of differential variables of size $n_{x}$, $u(t)$ is the vector of control variables of size $n_{u}$, $w(t)$ is the vector of uncertain parameters  of size $n_{w}$, $y(t)$ is a vector of measured outputs of size $n_{y}$, $h$ is the vector function of the algebraic equations, $g$ is the vector function of the inequality constraints that define the feasible operation.  $\mathbb{X}$, $\mathbb{Y}$, $\mathbb{U}$ are box type constraint, $\mathbb{W}$ is can be either a box type uncertainty set or stochastic with zero mean and variance $\Sigma_{w}$. $C_{x}$, $C_{u}$, $C_{w}$ are constant binary matrices. $A$, $B$ are constant state and input transition matrices that minimize  the objective function $\operatorname{J}(.)$ at the same time satisfy the feasibility constraints $g$ and $h$ over the given time horizon $t_{t}$. The objective can be $L^{p}$ norm with $p = 1, 2, \infty$ in the case of box type deterministic uncertainty or it can be the expected value of the objective function $\E(\operatorname{J}(.))$ or the covariance of output and input errors, $\Sigma_{yu} = \cov(y,u) = \E[(y-\E[y])(u-\E[u])]$ with $\E[u]$ and $\E[u]$ as the expected value of $y$ and $u$.
+
+\section{Solution Strategies}
+
+\input{Figures/fig-framework-model-identification.tex}
+
+Typically, optimisation algorithms are employed to search for the best set of decision variables that minimise the model gap between the predicted and actual values. The choice of algorithm is a trade-off between speed, performance, and the model's overall accuracy. This seemingly straight-forward model identification problem solved by using unconstrained, constrained, or convex optimisation methods quickly becomes a complex search problem due to its size in terms of the number of decision variables and constraints. How to solve this problem efficiently is the quest of this research project. Generalised AI-driven techniques can be employed to quickly learn a policy to tune parameters to accelerate convergence.
+
+Figure \ref{fig:framework} depicts a framework that we will adapt. The data required for reduced-order model identification and model-order reduction can be gathered by performing experiments on the real system or the high-fidelity model of the real system. We will perform experiments by perturbing the system using step-testing and/or pseudo-random binary sequence testing. Here, care will be taken to study the system both in open-loop and in closed-loop when the low-level regulations are active. Next, we will formulate the optimisation problem as stated in the equation (\ref{eq:model-identification}). Finally, we will investigate efficient, accurate, and robust algorithms for the reliable computation of ROMs of complex flows. We will attempt to develop AI algorithms by training machine learning models so that they can be generalised to the data they haven’t seen before. To achieve this, the framework shown in Figure \ref{fig:framework} will be adapted, perfected, integrated, and rigorously tested. The developed algorithms and tools will be put together to offer an integrated cloud-enabled solution as shown in the Figure \ref{fig:hierarchy}. The major impact of this work will be the ablity of using digital twins for designing model predictive control and carry out intelligent model-based analysis for equipment maintenance and fault tolerant control.
+
+\input{Figures/fig-automation-hierarchy.tex}
+
+\section{List of Deliverables}
+\begin{enumerate}[nosep]
+    \item Review of the current state-of-the-art
+    \item Algorithm for unconstrained systems without uncertainty
+    \item Algorithm for constrained system without uncertainty
+    \item Algorithm for system under deterministic uncertainty
+    \item Algorithm for system under stochastic uncertainty
+    \item Algorithm for closed-loop system
+    \item Analysis of application case study
+    \item Open software toolbox in the cloud
+    \item User guides and training material
+\end{enumerate}
+
+%\nocite{*}
+\renewcommand{\refname}{References}
+\setlength{\baselineskip}{0mm}
+%\setlength\bibitemsep{0mm}
+\boldname{Manthanwar}{Amit M.}{A. M.}
+\printbibliography
+
+%===============================================================================
+%-------------------------------------------------------------------------------
+%\vspace{-8mm}
+%\clearpage
+%\newpage
+%\baselineskip = 20mm
+%\scriptsize
+%-------------------------------------------------------------------------------
+%\pagestyle{empty} %\pagenumbering{empty} %\setcounter{page}{1}
+%-------------------------------------------------------------------------------
+%\def\bibindent{6mm}
+%\def\bibname{Bibliography AAA}
+%-------------------------------------------------------------------------------
+%\bibliographystyle{acm}
+%\bibliography{amit}
+%-------------------------------------------------------------------------------
+%\addcontentsline{toc}{chapter}{\bibname}
+%-------------------------------------------------------------------------------
+%===============================================================================
+\end{document}
+%===============================================================================
+%===============================================================================
+%===============================================================================
+
+
+\begin{thebibliography}{9}
+    \bibitem[Doe]{doe} \emph{First and last \LaTeX{} example.},
+    John Doe 50 B.C.
+
+    \bibitem{doe} \emph{First and last \LaTeX{} example.},
+    John Doe 50 B.C.
+\end{thebibliography}
+
+\end{document}
+
+
+
+\section{Materials and Hydrogen Energy Systems}
+\section{Systems Engineering}
+\subsection{System Modelling}
+\subsection{System Optimisation}
+\subsection{Advanced Control Systems}
+\subsection{Automation Software Development}
+\subsection{Decision Support System}
+\subsection{Energy System Integration and Experimental Testing}
+
+
+\section{Digitalisation}
+\section{Collaborative Development}
+
+Communications \& Cyber Security Systems
+Electrification of Transport
+Grid Digitalisation
+Advanced Power \& Control Systems
+Power Electronics Machines and Drives
+Whole Energy Systems incl. heat and hydrogen
+
+
+\section{Capacity Building}
+
+
+
+
+Economics of control
+
+\subsubsection{Information and Computing Technology}
+
+
+
+\subsection{Training and Technology Transfer}
+
+\section{Fund Raising and Grant Writing}
+\section{Project and Portfolio Manaegment}
+
+
+
+
+
+%$\mathbb{E}[J(.)]$ hello $\mathop{\mathbb{E}}[J(.)]$
+% $C_{x}$, $C_{z}$, and $C_{u}$ are the the matrices made up of binary numbers zeros and ones that map system states $x(t)$ and $z(t)$ and control inputs $u(t)$ to the appropriate measured outputs $y(t)$,
+%$z(t)$ is the vector of algebraic variables,
+% vector of controller design variables, XC is the vector of integer variables associated with the decisions that define the controller structure, ¯(t) is the vector of differential variables of the controller, ˙(t) is the vector of algebraic variables of the controller, y(t) is the vector of potential measured variables, f is the vector function of the differential equations of the process, h is the vector function of the algebraic equations of the process,
+% g is the vector function of the inequality constraints that define the feasible operation, Ê is the vector function of the differential equations of the controller, η is the vector function of the algebraic equations of the control-
+% ler, and μ is the functional relationships of the measurements and the differential and algebraic equations. J is the objective function whose expected value (E) is to be minimized over the time period of interest. The above problem aims to choose the optimal process topology (X) and the optimal process design (d), as well as the controller structure (XC) and parameters (dC ) that minimize the expected value of the objective function (E(J(.)) and at the same time satisfy the feasibility constraints over the given time  horizon. Therefore, it is an infinite-dimensional, stochastic, mixed integer dy-
+% namic optimization problem (SMIDO).
+
+%process design variables, $X$ is the vector of integer variables associated with the decisions that define the topology of the process, $θ(t)$ is the  vector

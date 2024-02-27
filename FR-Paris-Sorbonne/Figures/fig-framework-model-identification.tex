@@ -1,0 +1,88 @@
+\begin{figure}[!h]
+  \begin{center}
+    \resizebox{0.7\textwidth}{!}{\psset{unit=10mm}%\sffamily
+      \begin{pspicture}(0,0)(17,11)
+        % \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20]%,griddots=4,subgriddots=10] %,gridlabels=8pt,gridlabelcolor=red]
+
+        \psset{fillstyle=solid,opacity=0.9}%
+        \rput(0,1){
+          \rput(0,0){\psframe[fillcolor=gray!10](5,8)(12,10)}
+          \rput(8.5,9.5){\textbf{\Large{Real System}}}
+          \rput(8.5,9.0){or}
+          \rput(8.5,8.5){\textbf{High-Fidelity Model}}
+
+          \rput(0,0){\psframe[fillcolor=red!10,linecolor=black,linestyle=dashed,dash={2pt 2pt}](5,5)(12,7)}
+          \rput(8.5,6.5){\textbf{\Large{Design of Experiments}}}
+          \rput(8.5,6.0){\text{Open-Loop, Closed-Loop}}
+          \rput(8.5,5.5){\text{Step Test, Pseudo-Random}}
+        }
+
+        \rput(0,0){\psframe[fillcolor=yellow!10,linecolor=black,linestyle=dashed,dash={2pt 2pt}](0,0)(7,5)}
+        \rput(1,4.5){\textbf{\Large{Agent}}}
+        \rput(0,0){\psframe[fillcolor=red!10](0.2,1.5)(2.2,3.5)}
+        \rput(1.2,2.5){\textbf{States}}
+        \rput(4,4.5){\textbf{Policy}}
+        \rput(4,0.5){\textbf{Parameters}}
+
+        \multido{\iX=3+1}{3}{
+          \multido{\iY=1+1}{4}{
+            \rput(0,0){\pscircle[fillcolor=white](\iX,\iY){0.2}}
+          }
+        }
+        \rput(0,0){\pscircle[fillcolor=green!20](6,2.5){0.2}}
+        \multido{\iXX=0+1}{2}{
+          \psset{linewidth=0.01,linecolor=black}%
+          \multido{\iX=3+1}{1}{
+            \multido{\iXY=1+1}{4}{
+              \multido{\iY=1+1}{4}{
+                \rput(\iXX,0){\psline{-}(\iX,\iXY)(4,\iY)}
+              }
+            }
+          }
+        }
+        \multido{\iY=1+1}{4}{\psline{->}(2.2,2.5)(2.8,\iY)}
+        \multido{\iY=1+1,\nA=90+45}{4}{
+          \pnode(5,\iY){SSS}
+          \pnode(6,2.5){AAA}
+          \psset{nodesepB=0.2,arrows=->}
+          \ncline{SSS}{AAA}
+        }
+        \psline[linewidth=0.04]{->}(6.2,2.5)(7,2.5)
+
+        \rput(0,0){\psframe[fillcolor=cyan!10,linecolor=black,linestyle=dashed,dash={2pt 2pt}](10,0)(17,5)}
+        \rput(13.5,2.5){\textbf{\Large{Model Optimiser}}}
+
+        \rput(0,0){\psframe[fillcolor=yellow!10](10.2,3.2)(12.8,4.8)}
+        \rput(11.5,4.0){\textbf{Iterations}}
+
+        \rput(0,0){\psframe[fillcolor=green!10](14.2,3.2)(16.8,4.8)}
+        \rput(15.5,4.0){\textbf{KKT}}
+
+        \rput(0,0){\psframe[fillcolor=red!10](12.0,0.2)(15.0,1.8)}
+        \rput(13.5,1.0){\textbf{QP}}
+
+        \psset{fillstyle=none,linewidth=0.04}
+        \psline{->}(12,1)(11,1)(11,3.2)
+        \psline{->}(15,1)(16,1)(16,3.2)
+        \psline{->}(14.2,4)(12.8,4)
+
+        \psset{fillstyle=none,linewidth=0.06}
+        \psline{->}(7,8)(7,9)
+        \psline{->}(10,9)(10,8)
+
+        \psline{->}(12,7)(13.5,7)(13.5,5)
+        \psline{->}(5,7)(3.5,7)(3.5,5)
+
+        \psline{<-}(7,4.0)(10,4.0)
+        \psline{->}(7,2.5)(10,2.5)
+        \psline{<-}(7,1.0)(10,1.0)
+        \rput(8.5,4.3){Rewards}
+        \rput(8.5,2.8){Actions}
+        \rput(8.5,1.3){States}
+      \end{pspicture}}
+    \caption{Framework for AI-driven model identification}
+    \label{fig:framework}
+  \end{center}
+\end{figure}
+\endinput
+% ps2pdf -dNOSAFER fileName.ps

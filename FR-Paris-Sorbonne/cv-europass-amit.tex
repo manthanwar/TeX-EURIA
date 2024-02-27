@@ -1,0 +1,651 @@
+%===============================================================================
+% File Name     : <Lab_Manual_Fuel_Cell_PEM.tex>
+% Description   : Laboratory Manual for PEM Fuel Cell System
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Office        : Imperial College London
+% Mailer        : amit@imperial.ac.uk
+% Caller        : +44.207.594.6632
+% Mobile        : +44.795.461.7111
+% WebURL        : www.imperial.ac.uk
+%-------------------------------------------------------------------------------
+% Copyright     : ©2012 Amit Manohar Manthanwar
+% License       : Restricted Copyleft
+%===============================================================================
+%---------------+---------+----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 09-Jan-2024   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+% arara: latex: { options: ['--synctex=1']}
+% arara: bibtex: { options: [ '-terse' ] }
+% arara: --> if exists(toFile('references.bib'))
+% arara: latex: { options: ['--synctex=1']}
+% arara: dvips
+% arara: ps2pdf
+% arara: clean: { extensions: [ aux, log, dvi, ps ] }
+%===============================================================================
+\documentclass[11pt,a4paper]{article}
+%-------------------------------------------------------------------------------
+\RequirePackage[dvipsnames,svgnames]{xcolor}
+\RequirePackage{colortbl}
+\RequirePackage{fancyhdr}                           % Header & Footer
+\RequirePackage{lastpage}
+\RequirePackage{graphicx}
+\RequirePackage{pstricks}
+\RequirePackage{hyperref}
+\RequirePackage{array}
+\RequirePackage{enumitem}
+% \RequirePackage{longtable}
+
+\RequirePackage[
+  backend=biber,
+  autolang=hyphen,
+  sorting=ydnt,
+  style=nature,
+%   style=numeric,
+  isbn = false,
+  url = false,
+  doi=false,
+  eprint = false,
+  date = year,
+  minbibnames=6,
+  maxbibnames=6,
+  mincitenames = 1,
+  maxcitenames = 2,
+]{biblatex}
+
+%\addbibresource{manthanwar.bib}
+%\addbibresource{sample.bib}
+
+
+%\bibliography{sample}
+% \bibliography{manthanwar-bold}
+\bibliography{manthanwar}
+
+%\renewbibmacro{in:}{}
+
+
+\AtEveryBibitem{\clearfield{note}}
+\AtEveryBibitem{\clearname{editor}}
+\AtEveryBibitem{\clearlist{publisher}}
+% \AtEveryBibitem{\clearfield{series}}
+\AtEveryBibitem{\clearfield{volume}}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryBibitem{\clearfield{pages}}
+
+\newcommand*{\boldname}[3]{%
+    \def\lastname{#1}%
+    \def\firstname{#2}%
+    \def\firstinit{#3}}
+\boldname{}{}{}
+
+% \renewcommand{\mkbibnamegiven}[1]{\ifboolexpr{ test {\ifdefequal{\lastname}{\namepartfamily}} } {\mkbibbold{#1}}{#1} }
+
+% \renewcommand{\mkbibnamefamily}[1]{\ifboolexpr{ test {\ifdefequal{\lastname}{\namepartfamily}} } {\mkbibbold{#1}}{#1} }
+
+\renewcommand{\mkbibnamefamily}[1]{\ifboolexpr{ test {\ifdefequal{\lastname}{\namepartfamily}} } {\textbf{#1}}{#1} }
+
+
+%===============================================================================
+\hypersetup{
+    pdfauthor   ={Amit M. Manthanwar},
+    pdftitle    ={CV of Amit M. Manthanwar},
+    pdfsubject  ={Europass CV},
+    pdfkeywords ={Resume, Curriculum Vitae, CV, Biodata},
+    pdfproducer ={Amit M. Manthanwar using LaTeX},
+    pdfcreator  ={Amit M. Manthanwar using latex-dvips-ps2pdf},
+    colorlinks  = true,
+    linkcolor   = black,
+    anchorcolor = pink,
+    citecolor   = blue,
+    urlcolor    = black,
+}
+%-------------------------------------------------------------------------------
+\newcommand{\urlColor}[1]{\hypersetup{urlcolor=#1}}
+%===============================================================================
+%\usepackage{cmbright}
+%\usepackage{wedn}
+%===============================================================================
+\definecolor{teal}{rgb}{0.0, 0.5, 0.5}
+\definecolor{blueICLight}{rgb}{0.402, 0.603, 0.787}
+\definecolor{blueICDark}{rgb}{0, 0.273, 0.498}
+\definecolor{cyanEuro}{HTML}{1593cb}
+\definecolor{blueEuro}{HTML}{0e4194}
+
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+%===============================================================================
+\newcommand{\MONTH}{%
+    \ifcase\the\month
+    \or January% 1
+    \or February% 2
+    \or March% 3
+    \or April% 4
+    \or May% 5
+    \or June% 6
+    \or July% 7
+    \or August% 8
+    \or September% 9
+    \or October% 10
+    \or November% 11
+    \or December% 12
+    \fi}
+%===============================================================================
+%-------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%|<--- \paperwidth \paperheight  --->|%
+%|<->| \hoffset                      |%
+%|   | \voffset                      |%
+%|___|____________________________ __|%
+%|   |<->| 1in + \oddsidemargin   |  |%
+%|   |<->| 1in + \evensidemargin  |  |%
+%|   |   |------------------------|  |%
+%|   |   | 1in + \topmargin       |  |%
+%|   |   |------------------------|  |%
+%|   |   | HEADER \headheight     |  |%
+%|   |   |------------------------|  |%
+%|   |   | \headsep               |  |%
+%|   |   |========================|  |%
+%|   |   | TEXT  \topskip         |  |%
+%|   |   |       \textheight      |  |%
+%|   |   |<---   \textwidth   --->|  |%
+%|   |   |                        |  |%
+%|<-1->| | \marginparwidth        |  |%
+%|   | |2| \marginparsep          |  |%
+%|   |   |                        |  |%
+%|   |   |========================|  |%
+%|   |   | \footskip              |  |%
+%|   |   |------------------------|  |%
+%|   |   | FOOTER \footheight     |  |%
+%|   |   |------------------------|  |%
+%|___|____________________________|__|%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+\paperwidth     = 210mm     %% 597pt     %% = 8.5in
+\paperheight    = 297mm     %% 845pt     %% = 11in
+\oddsidemargin  = 0mm       %% Real leftmargin = 1.0 in
+\evensidemargin = 0mm       %% Real leftmargin = 1.0 in
+\topmargin      = 0mm       %% Real topmargin = (140 - 68) / 144 = 0.5in
+\hoffset        = -13.4mm    %% offset for printer's left margin
+\voffset        = -10.4mm   %% offset for printer's top margin
+\headheight     = 3mm       %% Height of the header
+\headsep        = 7mm       %% Separation between header and main text
+\footskip       = 7mm      %% Separation between footer and main text
+\textwidth      = 186mm     %% 432pt = 6in = 152.4mm
+\textheight     = 250mm     %% 10in
+%% Letter Paper = 8.5 x 11'' = 612 x 792 pt
+%% A4 Paper     = 8.27 x 11.69'' = 597 x 845 pt = 210 x 297 mm
+%% 72pt = 1in = 25.4mm
+\pdfpagewidth  = \paperwidth  %% Width of the PDF page to create
+\pdfpageheight = \paperheight %% Height of the PDF page to create
+%-------------------------------------------------------------------------------
+% Redefine plain page style
+\fancypagestyle{fancyFirstPage}{%
+\fancyhf{}%
+% \lhead{\hspace{56mm}\textcolor{cyanEuro}{Curriculum vitae}}%
+\rhead{\textcolor{cyanEuro}{Curriculum vitae}}%
+\chead{}%
+%\rhead{\textcolor{cyanEuro}{Amit Mahonar Manthanwar}}%
+\lfoot{\footnotesize{\textcolor{cyanEuro}{\the\day\ \MONTH\ \the\year}}}%
+\cfoot{\footnotesize{\textcolor{cyanEuro}{\copyright European Union, 2002 -- \the\year\ $|$ \href{https://europass.cedefop.europa.eu}{\textcolor{cyanEuro}{https://europass.cedefop.europa.eu}}}}}%
+\rfoot{\footnotesize{\textcolor{cyanEuro}{Page \thepage{}/{\hypersetup{linkcolor=cyanEuro}\pageref{LastPage}}}}}%
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}}
+%
+\fancypagestyle{fancy}{%
+\fancyhf{}%
+\lhead{\footnotesize{\textcolor{cyanEuro}{Curriculum vitae}}}%
+% \lhead{\hspace{56mm}\textcolor{cyanEuro}{Curriculum vitae}}%
+\chead{}%
+\rhead{\footnotesize{\textcolor{cyanEuro}{Amit Mahonar Manthanwar}}}%
+\lfoot{\footnotesize{\textcolor{cyanEuro}{\the\day\ \MONTH\ \the\year}}}%
+\cfoot{\footnotesize{\textcolor{cyanEuro}{\copyright European Union, 2002 -- \the\year\ $|$ \href{https://europass.cedefop.europa.eu}{\textcolor{cyanEuro}{https://europass.cedefop.europa.eu}}}}}%
+\rfoot{\footnotesize{\textcolor{cyanEuro}{Page \thepage{}/{\hypersetup{linkcolor=cyanEuro}\pageref{LastPage}}}}}%
+\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\footrulewidth}{0pt}}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+
+
+\begin{document}
+\thispagestyle{fancyFirstPage}
+\pagestyle{fancy}
+\rput[lb](0,0.66){\includegraphics{Figures/fig-logo-europasscv.eps}}
+%\rput[lb](0,0.66){\input{Figures/fig-logo-europasscv.tex}}
+
+\vspace{-4mm}
+
+\newcommand{\iconLocale}{\rput[lb](0,0){\resizebox{4mm}{!}{\input{Figures/fig-icon-locale.tex}}}\hspace{4mm}}
+\newcommand{\iconMobile}{\rput[lb](0,0){\resizebox{4mm}{!}{\input{Figures/fig-icon-mobile.tex}}}\hspace{4mm}}
+\newcommand{\iconMailer}{\rput[lb](0,0){\resizebox{4mm}{!}{\input{Figures/fig-icon-mailer.tex}}}\hspace{4mm}}
+\newcommand{\iconDobNat}{\rput[lb](0,0){\resizebox{4mm}{!}{\input{Figures/fig-icon-agenda.tex}}}\hspace{4mm}}
+\newcommand{\iconCaller}{\rput[lb](0,0){\resizebox{4mm}{!}{\input{Figures/fig-icon-caller.tex}}}\hspace{4mm}}
+
+\newcommand{\cvsection}[1]{\textcolor{blueEuro}{\uppercase{#1}}}
+\newcommand{\cvsubsection}[1]{\textcolor{blueEuro}{#1}}
+
+\newlength{\mywidth}
+\newcommand{\cvsecline}[1]{\settowidth{\mywidth}{\uppercase{#1}}\uppercase{#1}\rput(4mm,0){\psline[linestyle=solid,linewidth=0.04,linecolor=cyanEuro](0,0)(\dimexpr\textwidth-4mm-\mywidth,0)}\rput(\dimexpr\textwidth-2.4mm-\mywidth,0){\psframe[linestyle=none,linewidth=0mm,fillstyle=solid,fillcolor=cyanEuro](0,0)(0.24,0.24)}\par}
+
+
+\newcommand{\linequad}{\rput(0,0.02){\psline[linestyle=solid,fillstyle=none,linecolor=cyanEuro,linewidth=0.04](0,0)(13.0,0)}\rput(12.76,0.02){\psframe[linestyle=none,fillstyle=solid,fillcolor=cyanEuro](0,0) (0.24,0.24)}}
+
+\newcommand{\linequadPub}{\rput(0,0.02){\psline[linestyle=solid,fillstyle=none,linecolor=cyanEuro,linewidth=0.04](0,0)(15.3,0)}\rput(15.06,0.02){\psframe[linestyle=none,fillstyle=solid,fillcolor=cyanEuro](0,0) (0.24,0.24)}}
+
+\setlist[itemize,1]{nosep,topsep=0mm,before=\vspace{-1mm},after=\vspace{-1mm},itemsep=0mm,label=-,,leftmargin=6mm}
+\setlist[itemize,2]{nosep,topsep=0mm,itemsep=0mm,label=-,,leftmargin=6mm}
+
+
+
+% \renewcommand{\baselinestretch}{2}%
+%\renewcommand{\arraystretch}{1.2}%
+
+% \begin{tabular*}{\textwidth}[c]{|@{}R{50mm}|@{\hspace{2mm}}|L{128mm}@{}|}
+\begin{tabular*}{\textwidth}[c]{@{}R{50mm}@{\hspace{6mm}}L{128mm}@{}}
+    \cvsection{Personal Information} & \LARGE{\textbf{Amit Manohar Manthanwar}}\\ &
+    \begin{itemize}[label=,leftmargin=0mm,nosep]
+        \item \iconLocale\ 3 Sterling Apartment, Warje, Pune 411058, India
+        \item \iconMobile\ +91 853 081 3398
+        \item \iconMailer\ \href{mailto:manthanwar@hotmail.com}{manthanwar@hotmail.com}
+              % \item \iconCaller\ manthanwar
+        \item \iconDobNat\ Date of birth 25 June 1978 $|$ Nationality Indian
+    \end{itemize}\\
+
+    \cvsection{Job applied for} & \Large{Sorbonne Université SOUND.AI PhD} \\[4mm]
+
+    \cvsection{Work Experience} & \linequad\ \\[2mm]
+    Jun 2019 -- Present & \Large{Researcher/Independent Consultant}\\
+    & Independent Research Consultancy\\
+    %& \href{http://materich.com}{Materich Research Consultancy}\\
+    & \footnotesize{Warje, Pune 411058, India}\\ &
+    \begin{itemize}
+        \item Research Investigator for Cloud Platform Architecture
+        \item Develop Analytic Tools and Software Solutions for Bigdata Automation
+        \item Develop and Manage Consortia-led Collaborative Research Projects
+    \end{itemize}\\
+
+    % Mar 2019 - Jun 2019 & \Large{Research Scholar}\\
+    % & Aerospace Engineering, \href{https://www.tamu.edu}{Texas A\&M University}\\
+    % & \footnotesize{College Station, TX 77843, USA}\\ &
+    % % 1617 Research Parkway,
+    % \begin{itemize}
+    %     \item Pursue Research on Control of Tensegrity Structures
+    % \end{itemize}\\
+
+    %Aug 2017 - Mar 2019 & \Large{Program Manager}\\
+    Jan 2017 - Mar 2019 & \Large{Program Manager}\\
+    & \href{https://www.tamu.edu}{Texas A\&M University}\\
+    & \footnotesize{College Station, TX 77843, USA}\\ &
+    % 1617 Research Parkway,
+    \begin{itemize}
+        \item Manage Regional Center of Smart Manufacturing Institute (\href{https://www.cesmii.org}{cesmii.org})
+        \item Develop Lab and Pursue Research on Smart Manufacturing (Industry 4.0)
+              % \item Develop and Manage Consortia-led Collaborative Research Projects
+        \item Manage Projects, Trainings, Memberships, and Outreach Activities
+    \end{itemize}\\
+
+    Sep 2015 -- Dec 2017 & \Large{Research Assistant}\\
+    & \href{https://energy.tamu.edu}{Texas A\&M Energy Institute}\\
+    %, \href{https://www.tamu.edu}{Texas A\&M University}     \\
+    & \footnotesize{College Station, TX 77843, USA}\\ &
+    % 1617 Research Parkway,
+    \begin{itemize}
+        %\item Pursue Advanced Process Optimisation and Control Research
+        \item Develop Lab and Pursue Fuel Cell Energy Systems Research
+        \item Pursue Advanced Automation and Control Research
+              % \item Develop Fuel Cell Energy Systems Research Laboratory
+        \item Teach Advanced Process Optimisation and Control
+    \end{itemize}\\
+
+    Feb 2012 -- Aug 2015 & \Large{Research Assistant}\\
+    & \href{https://www.imperial.ac.uk}{Imperial College London}\\
+    & \footnotesize{South Kensington, London SW7 2AZ, UK}\\ &
+    \begin{itemize}
+        \item Develop Lab and Pursue Fuel Cell Energy Systems Research
+        \item Pursue Advanced Process Optimisation and Control Research
+              % \item Develop Fuel Cell Energy Systems Research Laboratory
+        \item Teach Advanced Process Optimisation and Control
+    \end{itemize}\\
+
+    Feb 2010 -- Dec 2011& \Large{Lecturer of Instrumentation and Control}\\
+    & \href{https://www.coep.org.in}{College of Engineering Pune}\\
+    & \footnotesize{Shivajinagar, Pune 411005, India}\\ &
+    % Wellesely Road,
+    \begin{itemize}
+        \item Pursue Advanced Process Optimisation and Control Research
+        \item Develop Industrial Process Automation Laboratory
+              % \item Write Academic Research Grant Proposals
+        \item Teach Advanced Process Optimisation and Industrial Control Automation
+    \end{itemize}\\
+
+    Aug 2007 -- May 2009 & \Large{Software Development Engineer}\\
+    & \href{https://www.se.com/ww/en/brands/invensys/invensys.jsp}{Invensys Development Centre (Invensys is now Schneider Electric)}\\
+    & \footnotesize{IT Park, Madhapur, Hyderabad 500081, India}\\ &
+    % Orion Block, Place-17, Vanon Burg,
+    \begin{itemize}
+        \item Develop Industrial Automation and Control Software (Foxboro IA\texttrademark)
+        \item Develop Model Predictive Control Software (Connoisseur\texttrademark)
+    \end{itemize}
+
+\end{tabular*}
+
+
+
+\begin{tabular*}{\textwidth}[c]{@{}R{50mm}@{\hspace{6mm}}L{128mm}@{}}
+    % Sep 2003 -- Oct 2006 & \Large{Research Assistant}\\
+    % & \href{https://www.imperial.ac.uk}{Imperial College London}\\
+    % & South Kensington Campus, London SW7 2AZ, UK\\ &
+    % \begin{itemize}
+    %   \item Pursue Advanced Process Optimisation and Control Research
+    %   \item Teach Advanced Process Optimisation and Control
+    % \end{itemize}\\
+
+    % Jan 2001 -- May 2003 & \Large{Research Assistant}\\
+    % & \href{https://www.iit.edu}{Illinois Institute of Technology}\\
+    % & 10 West 35th Street, Chicago, IL 60616, USA\\ &
+    % \begin{itemize}
+    %   \item Pursue Advanced Process Control Research
+    %   \item Teach Advanced Process Control
+    % \end{itemize}\\
+
+
+    \cvsection{Education and Training} & \linequad\ \\[4mm]
+
+    Jan 2001 -- May 2003 & \Large{Master of Science, Chemical Engineering} \hfill \textcolor{cyanEuro}{\small{ISCED~7}}\\
+    & \href{https://www.iit.edu}{Illinois Institute of Technology, Chicago, USA}\\ &
+    %& 10 West 35th Street, Chicago, IL 60616, USA\\ &
+    \begin{itemize}
+        \item Thesis Title: On the Tuning of Predictive Controllers
+    \end{itemize}\\
+
+    Aug 1995 -- May 1999 & \Large{Bachelor of Engineering, Petrochemical Engineering} \hfill\textcolor{cyanEuro}{\small{ISCED~6}}\\
+    & \href{https://mitpune.ac.in}{Maharashtra Institute of Technology},
+    %\href{http://www.unipune.ac.in}{Pune University},
+    Pune, India\\ &
+    % &  Kothrud, Pune 411038, India\\ &
+    % S.No. 124,LIC colony, MIT Campus, Paud Road,
+    \begin{itemize}
+        \item Thesis Title: Plantwide Control
+    \end{itemize}\\
+
+
+    \cvsection{Personal Skills} & \linequad\ \\[2mm]
+
+    Mother tongue & English/Marathi \\[4mm]
+
+    \arrayrulecolor{gray!70}
+    Other languages & {\setlength{\extrarowheight}{2mm}\setlength{\tabcolsep}{2mm}%
+            \vspace*{-8mm}
+            \begin{tabular*}{128mm}[t]{C{14mm}|C{14mm}|C{33mm}|C{30mm}|C{16mm}}
+                \hline
+                \multicolumn{2}{c|}{\uppercase{Understanding}} &
+                \multicolumn{2}{c|}{\uppercase{Speaking}} &
+                \multicolumn{1}{c}{\uppercase{Writing}}\\[1mm]\hline
+                \small{Listening} & \small{Reading} & \small{Spoken Understanding} & \small{Spoken Production} & \\[1mm]\hline
+            \end{tabular*} }\\[2mm]
+
+    % English & {\setlength{\extrarowheight}{1mm}\setlength{\tabcolsep}{2mm}%
+    %     \begin{tabular*}{128mm}[t]{C{14mm}C{14mm}C{33mm}C{30mm}C{16mm}}
+    %       C2 & C2 & C2 & C2 & C2\\[1mm]\hline
+    %     \end{tabular*} }\\[0mm]
+
+    % Hindi & {\setlength{\extrarowheight}{2mm}\setlength{\tabcolsep}{2mm}%
+    %     \begin{tabular*}{128mm}[t]{C{14mm}C{14mm}C{33mm}C{30mm}C{16mm}}
+    %       C2 & C2 & C2 & C2 & C2\\[1mm]\hline
+    %     \end{tabular*}}\\[0mm]
+
+    French & {\setlength{\extrarowheight}{2mm}\setlength{\tabcolsep}{2mm}%
+            \begin{tabular*}{128mm}[t]{C{14mm}C{14mm}C{33mm}C{30mm}C{16mm}}
+                A1 &  &  &  & \\[1mm]\hline
+            \end{tabular*} }\\[0mm]
+
+    Italian & {\setlength{\extrarowheight}{2mm}\setlength{\tabcolsep}{2mm}%
+            \begin{tabular*}{128mm}[t]{C{14mm}C{14mm}C{33mm}C{30mm}C{16mm}}
+                A1 &  &  &  & \\[1mm]\hline
+            \end{tabular*} }\\[2mm]
+
+    & \scriptsize{Levels: A1 and A2: Basic user; B1 and B2: Independent user; C1 and C2: Proficient user}\\[0mm]
+    & \scriptsize{\href{https://europa.eu/europass/en/common-european-framework-reference-language-skills}{Common European Framework of Reference for Language}}\\[6mm]
+    %\begin{tabular*}{128mm}[t]{|C{14mm}|C{14mm}|C{33mm}|C{30mm}|C{16mm}|}
+
+
+    Communication skills &
+    \begin{itemize}[before=\vspace{-2.7mm},leftmargin=4mm]
+        \item Team work: Led research consortia in the USA, UK, India, and EU
+        \item Teaching: Taught systems engineering courses in the USA, UK, and India
+        \item Mentorship: Supervised undergraduate and graduate students projects.
+              %\item mediating skills: I work on the borders between young people, youth trainers, youth policy and researchers, for example running a 3 day workshop at CoE Symposium ``Youth Actor of Social Change'', and my continued work on youth training programmes
+        \item Intercultural skills: Worked on the European Cultural Heritage
+    \end{itemize}\\[0mm]
+
+    \hspace{-10mm}{Organisational/managerial skills} &
+    \begin{itemize}[before=\vspace{-2.7mm},leftmargin=4mm]
+        \item Whilst working for the US Smart Manufacturing Institute I have built the regional CoE, managed research teams from across the US universities and industry sectors, organised seminar series on smart manufacturing, and organised training workshops.projects
+    \end{itemize}\\[0mm]
+
+    Digital competences & {\setlength{\extrarowheight}{2mm}\setlength{\tabcolsep}{2mm}%
+            \vspace*{-8mm}
+            \begin{tabular*}{128mm}[t]{C{22mm}|C{28mm}|C{20mm}|C{16mm}|C{20mm}}
+                \hline
+                \multicolumn{5}{c}{\uppercase{Self-assessment}} \\[1mm]
+                \hline
+                \small{Information  Processing } & \begin{tabular}{c} \small{Communication} \end{tabular} & \small{Content creation} & \begin{tabular}{c} \small{safety} \end{tabular} & \small{Problem solving}\\[1mm]\hline
+                Advanced & Advanced & Advanced & Advanced & Advanced \\[1mm]\hline
+            \end{tabular*} }\\[2mm]
+
+    & \scriptsize{\href{https://europa.eu/europass/en/how-describe-my-digital-skills}{Digital competences - Self-assessment grid}}\\[3mm]
+
+    Computer skills &
+    \begin{itemize}[before=\vspace{-2.7mm},leftmargin=4mm]
+        \item Languages: C, C++, Java, Python, LaTeX, Matlab
+        \item Web Technologies: HTML5, CSS, JavaScript, SQL, MongoDB,
+        \item Cloud Platforms: AWS, Azure, NodeJS, Docker
+        \item Microcontrollers: Arduino, ARM
+        \item Operating Systems: Windows, Linux
+        \item Applications: Geographic Information System (GIS), Industrial Automation
+        \item Graphic Design: Inkscape, Illustrator, SketchUp, Infographic, Visualizations
+        \item Office Productivity: Word, Excel, PowerPoint, SharePoint
+    \end{itemize}\\[0mm]
+
+    Other skills &
+    \begin{itemize}[before=\vspace{-2.7mm},leftmargin=0mm,label=]
+        \item \parbox{\linewidth}{Creating river networks, graphic design using logical programming as against visual drawing, cooking, gardening}
+    \end{itemize}\\[-2mm]
+
+    Driving licence & A, B
+\end{tabular*}
+
+\cvsecline{Publications}\vspace{-18mm}
+\nocite{*}
+\renewcommand{\refname}{}
+\setlength{\baselineskip}{0mm}
+\setlength\bibitemsep{0mm}
+\boldname{Manthanwar}{Amit M.}{A. M.}
+\printbibliography
+
+
+\cvsecline{References}\vspace{4mm}
+\begin{itemize}[label=$\bullet$,leftmargin=10mm,itemsep=2mm]
+    \item {\href{https://www.iit.edu/directory/people/donald-chmielewski}{Donald J. Chmielewski}}, Professor of Chemical Engineering, Illinois Institute of Technology, USA\\
+          \href{mailto:chmielewski@iit.edu}{chmielewski@iit.edu} $|$ +1 312 567 3537
+
+    \item {\href{https://samueli.ucla.edu/people/james-davis/}{Jim Davis}}, Professor of Chemical Engineering, University of California, Los Angeles, USA\\
+          \href{mailto:jfdavis@ucla.edu}{jfdavis@ucla.edu} $|$ +1 310 922 6327
+
+    \item {\href{https://homepages.rpi.edu/~bequeb/}{B. Wayne Bequette}}, Professor of Chemical Engineering, Rensselaer Polytechnic Institute, USA\\
+          \href{mailto:bequette at rpi.edu}{bequette at rpi.edu} $|$ +1 518 276 6683
+
+    \item {\href{https://engineering.tamu.edu/chemical/profiles/pistikopoulos-stratos.html}{Stratos Pistikopoulos }}, Professor of Chemical Engineering, Texas A\&M University, USA\\
+          \href{mailto:stratos@tamu.edu}{stratos@tamu.edu} $|$ +1 979 458 0259
+
+    \item {\href{https://www.imperial.ac.uk/people/n.shah}{Nilay Shah}}, Professor of Chemical Engineering, Imperial College London, UK\\
+          \href{mailto:n.shah@imperial.ac.uk}{n.shah@imperial.ac.uk} $|$ +44 207 594 6621
+
+    \item {\href{https://www.imperial.ac.uk/people/anthony}{AnthonyKucernak}}, Professor of Chemistry, Imperial College London, UK\\
+          \href{mailto:anthony@imperial.ac.uk}{anthony@imperial.ac.uk} $|$ +44 207 594 5831
+\end{itemize}
+\end{document}
+%===============================================================================
+
+
+
+
+
+
+
+% \begin{tabular*}{\textwidth}[c]{@{}R{50mm}@{\hspace{6mm}}L{128mm}@{}}
+% \cvsection{Publications} & \linequad\ \\[2mm]
+
+%\rput(0,-0.5){\psline[linewidth=2mm](0,0)(186mm,0)}
+
+
+% \hspace{-4mm}\begin{minipage}[t]{150mm}
+%\vspace{-18mm}
+
+\begin{tabular*}{186mm}[c]{@{}L{30mm}@{\hspace{3mm}}L{150mm}@{}}
+    \cvsection{Publications} & \linequadPub\ \\[2mm]
+\end{tabular*}
+
+
+
+
+\begin{tabular*}{186mm}[c]{@{}L{30mm}@{\hspace{3mm}}L{150mm}@{}}
+    \cvsection{References} & \linequadPub\ \\[2mm]
+\end{tabular*}
+
+
+
+% \def\FormatName#1{%
+%     \def\myname{Manthanwar}%
+%     \edef\name{#1}%
+%     \ifx\name\myname
+%         \textbf{#1}%
+%     \else
+%         #1%
+%     \fi
+% }
+%\bibliographystyle{acm}
+% \setlength{\baselineskip}{0mm}
+% \let\oldbibliography\thebibliography
+% \renewcommand{\thebibliography}[1]{%
+%     \oldbibliography{#1}%
+%     \setlength{\itemsep}{10pt}%
+% }
+% \bibliographystyle{nature}
+% \bibliographystyle{plain}
+% \bibliography{manthanwar}
+% \bibliography{manthanwar-bold}
+% \bibliography{sample}
+
+
+
+
+% \printbibliography[title={}]
+% \printbibliography[type=article,title={Articles only}]
+%\bibliography{sample}
+% \end{minipage}
+
+
+% & \begin{minipage}[t]{128mm}
+%   \vspace{-8mm}
+%   \nocite{*}
+%   \def\FormatName#1{%
+%     \def\myname{Leslie Lamport}%
+%     \edef\name{#1}%
+%     \ifx\name\myname
+%       \textbf{#1}%
+%     \else
+%       #1%
+%     \fi
+%   }
+%   %\bibliographystyle{acm}
+%   \setlength{\baselineskip}{0mm}
+%   \let\oldbibliography\thebibliography
+%   \renewcommand{\thebibliography}[1]{%
+%     \oldbibliography{#1}%
+%     \setlength{\itemsep}{10pt}%
+%   }
+%   \bibliographystyle{plain}
+%   \bibliography{sample}
+% \end{minipage}
+
+
+% & \begin{minipage}[t]{128mm}
+% & \hspace{-4mm}\begin{minipage}[t]{150mm}
+%   \vspace{-8mm}
+%   \nocite{*}
+%   \renewcommand{\refname}{}
+%   \setlength{\baselineskip}{0mm}
+%   \boldname{Amit M. Manthanwar}{Amit M.}{A. M.}
+%   \printbibliography
+%   % \printbibliography[title={}]
+%   % \printbibliography[type=article,title={Articles only}]
+%   %\bibliography{sample}
+% \end{minipage}
+
+
+
+
+
+%https://tex.stackexchange.com/a/334333/38244
+% \def\makenamesetup{%
+%     \def\bibnamedelima{~}%
+%     \def\bibnamedelimb{ }%
+%     \def\bibnamedelimc{ }%
+%     \def\bibnamedelimd{ }%
+%     \def\bibnamedelimi{ }%
+%     \def\bibinitperiod{.}%
+%     \def\bibinitdelim{~}%
+%     \def\bibinithyphendelim{.-}}
+% \newcommand*{\makename}[2]{\begingroup\makenamesetup\xdef#1{#2}\endgroup}
+
+% \renewcommand{\mkbibnamegiven}[1]{%
+%     \makename{\currname}{#1}%
+%     \makename{\findname}{\firstname}%
+%     \makename{\findinit}{\firstinit}%
+%     \ifboolexpr{ test {\ifdefequal{\currname}{\findname}}%
+%         or test {\ifdefequal{\currname}{\findinit}} }%
+%     {\mkbibbold{#1}}{\textcolor{red}{\currname \findname} #1}%
+% }
+
+
+% \renewcommand{\mkbibnamegiven}[1]{%
+%     \makename{\currname}{#1}%
+%     \makename{\findname}{\firstname}%
+%     \ifboolexpr{ test {\ifdefequal{\currname}{\findname}} }%
+%     {\textcolor{red}{\currname \mkbibbold{#1}}}{#1}%
+% }
+
+% \renewcommand{\mkbibnamefamily}[1]{%
+%     \makename{\currname}{#1}%
+%     \makename{\findname}{\lastname}%
+%     \ifboolexpr{ test {\ifdefequal{\currname}{\findname}} }%
+%     {\mkbibbold{#1}}{#1}%
+% }
+% \boldname{Squarepants}{Bob}{Sponge}
+
+% Patch new definitions
+% \renewcommand{\mkbibnamegiven}[1]{%
+%     \ifboolexpr{ ( test {\ifdefequal{\firstname}{\namepartgiven}} or test {\ifdefequal{\firstinit}{\namepartgiven}} ) and test {\ifdefequal{\lastname}{\namepartfamily}} }
+%     {\mkbibbold{#1}}{#1}%
+% }
+
+% \renewcommand{\mkbibnamefamily}[1]{%
+%     \ifboolexpr{ ( test {\ifdefequal{\firstname}{\namepartgiven}} or test {\ifdefequal{\firstinit}{\namepartgiven}} ) and test {\ifdefequal{\lastname}{\namepartfamily}} }
+%     {\mkbibbold{#1}}{#1}%
+% }
+
+
+% \renewcommand{\mkbibnamefamily}[1]{%
+%     \ifboolexpr{ (test {\ifdefequal{\lastname}{\namepartfamily}} }
+%     {\mkbibbold{#1}}{#1}%
+% }

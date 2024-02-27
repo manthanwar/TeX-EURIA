@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2.7785008mm"
+   height="4mm"
+   viewBox="0 0 2.7785008 4"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="fig-icon-locale.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="false"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="20.496745"
+     inkscape:cx="-2.9028999"
+     inkscape:cy="14.63647"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:snap-grids="true"
+     units="mm"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid832"
+       units="mm"
+       empspacing="10"
+       spacingx="1"
+       spacingy="1"
+       originx="-20.622465"
+       originy="-88.910517" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath341">
+      <path
+         d="M 0,0 H 36 V 36 H 0 Z"
+         id="path339" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-20.622464,-88.910519)">
+    <g
+       id="g2919"
+       transform="matrix(0.11388157,0,0,-0.11388157,19.961878,92.960387)"
+       style="stroke-width:0.975671">
+      <g
+         id="g2917"
+         style="stroke-width:0.975671">
+        <g
+           id="g2915"
+           style="stroke-width:0.975671">
+          <g
+             id="g2913"
+             clip-path="url(#clipPath341)"
+             style="stroke-width:0.975671">
+            <g
+               id="g2911"
+               transform="scale(0.1)"
+               style="stroke-width:0.975671">
+              <path
+                 d="M 219.34,245.551 C 219.34,223.828 201.719,206.211 180,206.211 158.281,206.211 140.66,223.828 140.66,245.551 140.66,267.301 158.281,284.922 180,284.922 201.719,284.922 219.34,267.301 219.34,245.551 Z M 180,355.621 C 112.539,355.621 58.5195,308.871 58.0117,251.801 57.8516,233.91 61.3281,218.828 67.8516,203.48 74.3008,188.238 171.801,10.9414 171.801,10.9414 176.371,2.19141 183.672,2.19141 188.199,10.9414 188.199,10.9414 284.77,188.09 291.371,203.48 298.051,219.102 301.988,235.469 301.988,251.801 301.988,308.48 247.461,355.621 180,355.621 Z"
+                 style="fill:#1494cc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.975671"
+                 id="path2909" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

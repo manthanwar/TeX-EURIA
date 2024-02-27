@@ -1,0 +1,18 @@
+\begin{figure}[!h]
+  \rput(0,0){\psline[linecolor=red,linewidth=0.4](-2,0.4)(21,0.4)}
+  \rput(0,0){\psline[linecolor=green,linewidth=0.4](-2,0)(0,0)}
+  \rput(0,0){\psline[linecolor=blue,linewidth=0.4](0,0)(17,0)}
+  \rput(0,0){\psline[linecolor=green,linewidth=0.4](17,0)(21,0)}
+  \begin{center}
+    \resizebox{0.9\textwidth}{!}{\psset{unit=10mm}%\sffamily
+      \begin{pspicture}(0,0)(17,5)
+        \psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20]%,griddots=4,subgriddots=10] %,gridlabels=8pt,gridlabelcolor=red]
+
+        \rput(0,0){\psframe[fillstyle=solid,fillcolor=red](0,0)(5,5)}
+
+      \end{pspicture}}
+    %\caption{Project timeline with key events}
+  \end{center}
+\end{figure}
+\endinput
+% ps2pdf -dNOSAFER fileName.ps

@@ -1,0 +1,487 @@
+%===============================================================================
+% File Name     : <euria.cls>
+% Description   : European Union Research Innovation Actions Proposal
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Indian        : Warje, Pune, Maharashtra, India
+% Mailer        : manthanwar@hotmail.com
+% Caller        : Skype ID: mnthanwar@hotmail.com
+% Mobile        : +91.853.081.3398
+% WebURL        : https://manthanwar.github.io
+%-------------------------------------------------------------------------------
+% Author        : Amit Manohar Manthanwar
+% Office        : Imperial College London
+% Mailer        : amit@imperial.ac.uk
+% Caller        : +44.207.594.6632
+% Mobile        : +44.795.461.7111
+% WebURL        : www.imperial.ac.uk
+%-------------------------------------------------------------------------------
+% Copyright     : ©2022 Amit Manohar Manthanwar
+% License       : Restricted
+%===============================================================================
+%---------------+---------+----------------------------------------------------
+% Revision Log  | Author  | Description
+%---------------+---------+----------------------------------------------------
+% 30-Apr-2022   | AMM     | Initial Version
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%---------------+---------+----------------------------------------------------
+%===============================================================================
+%\NeedsTeXFormat{LaTeX2e}
+%\ProvidesClass{euria}[2022/04/30 EU Research Innovation Actions]
+%-------------------------------------------------------------------------------
+\LoadClass[oneside,10pt,a4paper]{article}
+%-------------------------------------------------------------------------------
+\RequirePackage{fp}
+\RequirePackage{fix-cm}
+\RequirePackage{siunitx}
+\RequirePackage[ddmmyyyy]{datetime}
+\newdateformat{dateFormat}{{\THEDAY} {\monthname} {\THEYEAR}}
+\RequirePackage{fancyhdr}                           % Header & Footer
+\RequirePackage[pagebackref,colorlinks=false]{hyperref}
+\RequirePackage{lastpage}
+\RequirePackage[dvipsnames,svgnames]{xcolor}
+\RequirePackage{colortbl}
+\RequirePackage{multirow}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{pstricks}
+\RequirePackage{qrcode}
+%-------------------------------------------------------------------------------
+%===============================================================================
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% bibliograpy Item Spacing
+\let\oldthebibliography\thebibliography
+\let\endoldthebibliography\endthebibliography
+\renewenvironment{thebibliography}[1]
+{\begin{oldthebibliography}{#1}
+\scriptsize
+%\footnotesize
+%\setlength{\itemsep}{1em}
+\setlength{\parskip}{0em}}
+{\end{oldthebibliography}}
+
+\if{0}
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  %\setlength{\itemsep}{0pt plus 0.3ex}
+  \setlength{\itemsep}{0.8mm}
+}
+\fi
+
+%-------------------------------------------------------------------------------
+\hypersetup{
+pdfauthor={Amit M. Manthanwar},
+pdftitle={CV},
+pdfsubject={CV of Amit M. Manthanwar},
+pdfkeywords={Chemical Engineer, System Engineer, Automation Engineer,
+Developer, Web Developer, Full Stack Developer, Programmer,
+Director, Chief Technology Officer, Program Manager, Portfolio Manager},
+pdfproducer={Amit M. Manthanwar using LaTeX},
+pdfcreator={Amit M. Manthanwar using pdflatex}
+}
+%-------------------------------------------------------------------------------
+%===============================================================================
+\definecolor{ICBlueLight}{rgb}{0.402, 0.603, 0.787}
+\definecolor{ICBlueDark}{rgb}{0, 0.273, 0.498}
+%===============================================================================
+%-------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%|<--- \paperwidth \paperheight  --->|%
+%|<->| \hoffset                      |%
+%|   | \voffset                      |%
+%|___|____________________________ __|%
+%|   |<->| 1in + \oddsidemargin   |  |%
+%|   |<->| 1in + \evensidemargin  |  |%
+%|   |   |------------------------|  |%
+%|   |   | 1in + \topmargin       |  |%
+%|   |   |------------------------|  |%
+%|   |   | HEADER \headheight     |  |%
+%|   |   |------------------------|  |%
+%|   |   | \headsep               |  |%
+%|   |   |========================|  |%
+%|   |   | TEXT  \topskip         |  |%
+%|   |   |       \textheight      |  |%
+%|   |   |<---   \textwidth   --->|  |%
+%|   |   |                        |  |%
+%|<-1->| | \marginparwidth        |  |%
+%|   | |2| \marginparsep          |  |%
+%|   |   |                        |  |%
+%|   |   |========================|  |%
+%|   |   | \footskip              |  |%
+%|   |   |------------------------|  |%
+%|   |   | FOOTER \footheight     |  |%
+%|   |   |------------------------|  |%
+%|___|____________________________|__|%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+\paperwidth     = 210mm     %% 597pt     %% = 8.5in
+\paperheight    = 297mm     %% 845pt     %% = 11in
+\oddsidemargin  = 0mm       %% Real leftmargin = 1.0 in
+\evensidemargin = 0mm       %% Real leftmargin = 1.0 in
+\topmargin      = 0mm       %% Real topmargin = (140 - 68) / 144 = 0.5in
+\hoffset        = -10.4mm   %% offset for printer's left margin
+\voffset        = -25.4mm   %% offset for printer's top margin
+\headheight     = 15mm      %% Height of the header
+\headsep        = 5mm       %% Separation between header and main text
+\footskip       = 5mm       %% Separation between footer and main text
+\textwidth      = 184mm     %% 432pt = 6in = 152.4mm
+\textheight     = 262mm     %% 10in
+%% Letter Paper = 8.5 x 11'' = 612 x 792 pt
+%% A4 Paper     = 8.27 x 11.69'' = 597 x 845 pt = 210 x 297 mm
+%% 72pt = 1in = 25.4mm
+\pdfpagewidth  = \paperwidth  %% Width of the PDF page to create
+\pdfpageheight = \paperheight %% Height of the PDF page to create
+%-------------------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+%\setlength{\parskip}{4pt}
+%\setlength{\parindent}{12pt}
+%\renewcommand{\baselinestretch}{1}
+%\setlength{\baselineskip}{30pt}
+%\setlength{\abovecaptionskip}{0pt}
+%-------------------------------------------------------------------------------
+% Woks with titlesec
+%\titlespacing{\section}{0pt}{4mm}{0mm}
+%\titlespacing{\subsection}{0pt}{4mm}{0mm}
+%\titlespacing{\subsubsection}{0mm}{4mm}{0mm}
+%-------------------------------------------------------------------------------
+%\setlength{\textfloatsep}{2mm}
+%\setlength{\floatsep}{2mm}
+%\setlength{\intextsep}{2mm}
+%\renewcommand{\arraystretch}{2}
+%\setlength{\extrarowheight}{10mm} % Works only in the tabular
+%\newcommand{\rowLineAfter}{6mm}
+%\newcommand{\rowsepbefore}{1mm}
+%\newcommand{\rowsepafter}{8mm}
+%\setlength{\extrarowheight}{\rowsepbefore}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\newcommand{\psCopyright}[1]{%
+\rput[l](3pt,3pt){\pscircle[linewidth=0.5pt](0,0){4pt}}%
+\rput[l](0.2pt,3pt){\tiny{C}}%
+\rput[l](8pt,3pt){\footnotesize{#1}}}
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+% Redefine page style - Title Page
+\fancypagestyle{fancyTitle}{
+    \fancyhf{}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \lfoot{\psCopyright{\the\year\ Manthanwar}}
+    %\cfoot{\footnotesize{manthanwar@hotmail.com \;\; $\bullet$ \;\; +91.853.081.3398}}
+    %\rfoot{\footnotesize{\thepage}}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+%-------------------------------------------------------------------------------
+% Redefine page style - Document Fancy
+\fancypagestyle{fancy}{
+    \fancyhf{}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    %\lfoot{\psCopyright{2022 manthanwar@hotmail.com}}
+    \cfoot{\footnotesize{}}
+    %\rfoot{\footnotesize{\thepage}}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% Page Size Testing
+%\psset{linewidth=1mm}
+%\rput(1,9mm){\psline(0,0)(0,1.4)}
+%\rput(0,8mm){\psline(0,0)(0,-0.5)}
+%\rput(0.4,8mm){\psline(0,0)(0,-26)}
+%\rput(2.8,-25.2){\psline[linecolor=red](0,0)(0,-0.7)}
+%\rput(1.8,-25.9){\psline(0,0)(0,-1.5)}
+%
+%\rput[l](6,6){\pscircle(0,0){10mm}}
+%\rput(-1.5,8){\psline[linecolor=red](0,0)(1.5,0)}
+%\rput(18,8){\psline[linecolor=red](0,0)(1.5,0)}
+%-------------------------------------------------------------------------------
+%\raggedbottom
+%===============================================================================
+\title{Amit \LARGE{Amit} MAN}
+\author{Ami aa}
+\date{\dateFormat\today}
+%===============================================================================
+\begin{document}
+%===============================================================================
+%\maketitle
+\thispagestyle{fancyTitle}
+\pagestyle{fancy} %\sffamily
+%===============================================================================
+\vspace*{-14mm}
+\begin{center}
+%{\LARGE{\textsc{Amit Manohar Manthanwar}}}\\[2mm]
+\textbf{\LARGE{A}\Large{MIT} \LARGE{M}\Large{ANOHAR} \LARGE{M}\Large{ANTHANWAR}}\\[2mm]
+\emph{Systems Engineer \& Full Stack Software Developer}
+\end{center}
+%===============================================================================
+
+%\vspace*{-2mm}
+%=========================================================================
+\begin{figure}[!h]
+\centering%
+%\resizebox{0.9\textwidth}{!}{
+%\sffamily
+%\psset{unit=10mm}
+\begin{pspicture}(0,0)(18.4,25)
+%\psgrid[subgriddiv=5, gridcolor=gray!50, subgridcolor=gray!20, gridlabels=8pt, gridlabelcolor=red, gridwidth=0.1mm,subgridwidth=0.1mm] % griddots=4, subgriddots=10,
+%-------------------------------------------------------------------------------
+%\psaxes[comma,Dx=1,dx=1,Dy=0.10,dy=1,xlabelPos=bottom,linewidth=0.4mm,ticks=none]
+%{C->}(1,1)(1,1)(8,7)[$x$,0][$y$,90]
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\rput(0,0){%
+\psset{dimen=middle,fillstyle=solid,fillcolor=white,linestyle=none}
+\psframe(0,25)(12.8,0)}
+
+\rput[lt](0.2,24.8){\begin{minipage}[!ht]{124mm}
+\textbf{\large{Summary}}\\[2mm]
+A data scientist, applications analyst and software developer with 15+ years of research,  development, training and technology transfer experience in energy, environment and manufacturing sectors now seeking an opportunity to apply skills, expertise and experience to explore new frontiers of engineering.\\
+
+
+\textbf{\large{Expertise}}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Multiscale system design, modelling, simulation and uncertainty analysis
+\item Algorithms for mathematical optimisation and advanced process control
+\item Architecture for Industry 4.0 operations and information technology
+\item Full stack software technology platform ecosystem development
+\item Technical writing for research and business funding proposals
+\item Consortia coordination and project portfolio management
+\item Typography, graphic design and data visualisation\\
+\end{itemize}
+
+
+\textbf{\large{Experience}}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item 11/2019 -- Current: Freelance research analyst, Pune, India
+\item 08/2017 -- 10/2019: Program Manager, Smart Manufacturing (CESMII), USA
+\item 08/2016 -- 08/2017: Research Fellow, Texas A\&M Energy Institute, USA
+\item 02/2012 -- 08/2016: Research Associate, Imperial College London, UK
+\item 02/2010 -- 12/2011: Assistant Professor, College of Engineering, Pune, India
+\item 08/2007 -- 05/2009: Software Developer, Invensys, Hyderabad, India
+\item 02/2007 -- 05/2007: Industrial Automation Engineer, RasGas, Doha, Qatar
+\item 05/2005 -- 08/2006: Web Developer, Imperial College London, UK
+\item 10/2003 -- 11/2006: Research Assistant, Imperial College London, UK
+\item 08/2001 -- 08/2003: Teaching Assistant, Illinois Institute of Technology, USA
+\item 01/2001 -- 05/2003: Research Assistant, Illinois Institute of Technology, USA\\
+\end{itemize}
+
+\textbf{\large{Awards}}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Smart manufacturing, US Department of Energy grant, 2017
+\item Smart chemical processing, US Department of Energy grant, 2018
+\item Best energy exhibit award, UK Energy Research Centre, 2014
+\item In situ analysis of fuel cell systems, UK Research Council grant, 2014
+\item IChemE Journal;s best reviewers award, 2011
+\item Remote education through ICT, Government of India grant, 2010
+\item Software development pride award, Invensys, 2008
+\item Excellence in teaching award, Illinois Institute of Technology, 2002\\
+\end{itemize}
+
+
+\textbf{\large{Education}}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+%\item PhD Chemical Engineering (Thesis Pending), Imperial College London
+\item MS Chemical Engineering, Illinois Institute of Technology, Chicago
+\item BE Chemical Engineering, Maharashtra Institute of Technology, Pune\\
+\end{itemize}
+
+
+\textbf{\large{Publications}}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Smart manufacturing platform, Manufacturing science and engineering, 2018
+\item Fundamental in situ understanding of fuel cell, Applied energy, 2016
+\item Economic value of control strategies, In book smart process plants, 2010
+\item Robust parametric programming, Computers and chemical engineering, 2005
+\item Tuning of model predictive controllers, ACS industrial engineering, 2003, 2004
+\item Convex methods in actuator placement, American control conference, 2002\\
+\end{itemize}
+
+
+
+\textbf{\large{Products}}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item \TeX\ Postscript package \textsf{pst-flags} for graphic design, 2022
+\item Fully automated fuel cell power plant, Imperial College London, 2014
+\item JAVA-\LaTeX\ online information and application processing system, 2009
+\item Foxboro$^{\rm{\tiny{TM}}}$ Intelligent Automation integration tool version 1.4, Invensys, 2009
+\item Connoisseur$^{\rm{\tiny{TM}}}$ advanced process control software version 15, Invensys, 2008
+% /Schneider Electric
+%\item System-on-chip optimization and control, Imperial College London, 2015
+%\item In situ fuel cell experimental test facility, Imperial College London, 2013
+\end{itemize}
+
+
+
+
+\end{minipage}}
+%=========================================================================
+\rput(13.2,25){%
+\psset{dimen=middle,fillstyle=solid,fillcolor=gray!10,linestyle=none}
+\psframe(0,0)(5,-5.5)
+
+\rput[lt](0.2,-0.2){\begin{minipage}[!ht]{46mm}
+%\psline(0,0)(46mm,0)
+%\flushright
+\textbf{Contact}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+
+\item Address\\
+3 Sterling Apartment\\
+Warje, Pune, MH 411058
+
+\item Phone\\
++91.853.081.3398
+
+\item Email\\
+manthanwar@hotmail.com
+
+\item GitHub\\
+\href{https://github.com/manthanwar}{github.com/manthanwar}
+
+\item WWW\\
+\href{https://manthanwar.github.io}{manthanwar.github.io}
+\end{itemize}
+\end{minipage}}}
+%=========================================================================
+%=========================================================================
+\rput(13.2,19.3){%
+\psset{dimen=middle,fillstyle=solid,fillcolor=gray!10,linestyle=none}
+\psframe(0,0)(5,-10)
+
+\rput[lt](0.2,-0.2){\begin{minipage}[!ht]{46mm}
+%\psline(0,0)(46mm,0)
+%\flushright
+\textbf{Programming Skills}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=red!30](0,0)(2.0,0.2)} C/C++
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=Green!40](0,0)(2.3,0.2)} Java/JS
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=cyan!40](0,0)(2.0,0.2)} PHP
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=blue!40](0,0)(2.7,0.2)} SQL
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=violet!40](0,0)(2.7,0.2)} NoSQL
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=magenta!40](0,0)(2.7,0.2)} CSS
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=purple!40](0,0)(2.7,0.2)} Python
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=violet!40](0,0)(2.7,0.2)} Matlab
+\item \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=gray!70](0,0)(2.7,0.2)} \rput(1.4,0){\psframe[fillstyle=solid,fillcolor=teal!40](0,0)(2.7,0.2)} LaTeX\\
+\end{itemize}
+
+\textbf{Computer Platforms}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Linux
+\item Windows
+\item Apache Server
+\item NodeJS Server\\
+%\item Virtualization\\
+\end{itemize}
+
+\textbf{Computer Applications}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Graphic design
+\item Data processing
+\item Data visualisation
+\item Business productivity
+\end{itemize}
+
+\end{minipage}}}
+%=========================================================================
+
+%=========================================================================
+\rput(13.2,9.1){%
+\psset{dimen=middle,fillstyle=solid,fillcolor=gray!10,linestyle=none}
+\psframe(0,0)(5,-9.2)
+
+\rput[lt](0.2,-0.2){\begin{minipage}[!ht]{46mm}
+%\psline(0,0)(46mm,0)
+%\flushright
+\textbf{Languages}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Marathi - Mother Tongue
+\item English - Native
+\item Hindi - Advanced
+\item Italian - Basic
+\item French - Basic\\
+\end{itemize}
+
+\textbf{Areas of Interests}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Web development
+\item Numerical algorithms
+\item Bigdata-driven analysis
+\item Energy and environment\\
+\end{itemize}
+
+\textbf{Statistics}
+\begin{itemize}[nosep,itemsep=0mm,topsep=1mm,left=1mm,label=$\circ$]
+\item Conferences: 41
+\item Publications: 15
+\item Funding grants: \$145M
+\item Academic experience: 15yr
+\item Industry experience: 6yr
+\item Countries travelled: 8
+\end{itemize}
+
+
+\end{minipage}}}
+%=========================================================================
+
+
+%=========================================================================
+
+%=========================================================================
+
+%=========================================================================
+%=========================================================================
+
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
+\end{pspicture}
+%}
+%\vspace{-2mm}
+%\caption{Project timeline with key events}
+\end{figure}
+%=========================================================================
+%===============================================================================
+
+
+
+%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
+\end{document}
+%===============================================================================
+%===============================================================================
+Work Experience
+Professional Skills
+Interests
+Education
+Languages
+Awards
+Contact
+
+Academic Experience
+Industrial Experience
+
+About
+
+\uppercase{Areas of Expertise}%===============================================================================
+%===============================================================================
+%===============================================================================
+%===============================================================================
