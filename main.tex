@@ -19,105 +19,40 @@
 %---------------+---------+----------------------------------------------------
 %===============================================================================
 \documentclass{euria}
-
-%   backref=true
-\usepackage[
-  backend=biber,
-  autolang=hyphen,
-  sorting=ydnt,
-  style=nature,
-  % style=numeric,
-  % style=alphabetic,
-  isbn = false,
-  url = false,
-  doi=false,
-  eprint = false,
-  date = year,
-  minbibnames = 1,
-  maxbibnames = 1,
-  mincitenames = 1,
-  maxcitenames = 2,
-  % backref=true,
-  ]{biblatex}
 % \addbibresource{references.bib}
 \bibliography{references}
-
-\AtEveryBibitem{
-  \clearfield{note}
-  \clearfield{series}
-  \clearfield{volume}
-  \clearfield{month}
-  \clearfield{pages}
-  \clearfield{date}
-  \clearfield{eprint}
-  \clearfield{isbn}
-  \clearfield{issn}
-  \clearfield{doi}
-  \clearfield{url}
-  \clearlist{address}
-  \clearlist{language}
-  \clearlist{publisher}
-  \clearlist{location}
-  \clearname{editor}
-}
-
-% Remove publisher and editor except for books
-\AtEveryBibitem{\ifentrytype{book}{}{
-  \clearlist{publisher}
-  \clearname{editor}
-}}
-
-\DefineBibliographyStrings{english}{%
-  backrefpage = {on page},% originally "cited on page"
-  backrefpages = {on pages},% originally "cited on pages"
-}
-
-% Abbreviate Journal Names
-\DeclareSourcemap{\maps[datatype=bibtex,overwrite=true]{\map{
-  \step[fieldsource=journal, match=\regexp{Water\sresearch}, replace={Water res}]
-  \step[fieldsource=journal, match=\regexp{Environmental\sscience\sand\stechnology}, replace={Env sci tech}]
-  % \step[fieldset=volume,null]
-}}}
-
-
-\DeclareFieldFormat{volume}{\color{red}{\mkbibbold{#1}}}
-
-% \setlength{\bibitemsep}{0.1\itemsep}
-
-
-\setlength{\bibitemsep}{-0.5\itemsep}
-
 %-------------------------------------------------------------------------------
 % \usepackage{amm-pst-icons-heritage}
 % \usepackage{amm-pst-icons-mobile}
 % \usepackage{amm-pst-icons-work-packages}
 %-------------------------------------------------------------------------------
-\renewcommand{\callOrg}{EU Grants Application Form}
-\renewcommand{\callRef}{EU-Horizon-CL6-2024-ZeroPollution-02-1-Two-Stage}
-\renewcommand{\propIdn}{SEP-211031517}
-\renewcommand{\propVer}{1.0}
-\renewcommand{\acronym}{DEEPWATER}
-\renewcommand{\project}{\Large{
-\textcolor{purple}{Deep} Technology for Monitoring
-\textcolor{purple}{Water} Ecosystem} \\[2mm]
-\large{\textrm{\textcolor{teal}{DEEPWATER:} A Holistic Water Quality Monitoring Solution for Urban Areas}}\\[2mm]%
-}
+% \renewcommand{\callOrg}{EU Grants Application Form}
+% \renewcommand{\callRef}{EU-Horizon-CL6-2024-ZeroPollution-02-1-Two-Stage}
+% \renewcommand{\propIdn}{SEP-211031517}
+% \renewcommand{\propVer}{1.0}
+% \renewcommand{\acronym}{DEEPWATER}
+% \renewcommand{\project}{\Large{
+% \textcolor{purple}{Deep} Technology for Monitoring
+% \textcolor{purple}{Water} Ecosystem} \\[2mm]
+% \large{\textrm{\textcolor{teal}{DEEPWATER:} A Holistic Water Quality Monitoring Solution for Urban Areas}}\\[2mm]%
+% }
+
+\input{PyTeX/table-call.tex}
 %-------------------------------------------------------------------------------
 %===============================================================================
 \begin{document}
 \maketitle
-\baselineskip = 10pt
+\baselineskip = 12pt
 \thispagestyle{titlePage}
 \pagestyle{fancy}
-%\setlength{\abovecaptionskip}{10pt}
 \renewcommand{\baselinestretch}{1}
 \setlength{\parskip}{10pt}
 \sisetup{per-mode=symbol}
 % \sisetup{per-mode=reciprocal}
 %==============================================================================
 % Table of participants
-% \vspace{4mm}
-%\input{Figures/tab-participants.tex}
+\vspace{4mm}
+\input{PyTeX/table-participants.tex}
 %------------------------------------------------------------------------------
 %%\begin{center}\small{[Sample from Amit's proposal on Education -- to be updated for Cultural Heritage]}
 %%\end{center}
@@ -133,29 +68,18 @@
 % \input{Figures/fig-wbs.tex}
 
 
-Hi Amit
-Howdy document
-\section{Introduction}
-\cite{zuccato2008illicit} is intro
-\cite{kolpin2002pharmaceuticals}
+\input{sec-abstract.tex}
+\input{sec-excellence.tex}
+\input{sec-impact.tex}
+\input{sec-impact-summary.tex}
+\input{sec-quality.tex}
 
 
-\clearpage
-\section{Impact}
-hi \cite{zuccato2008illicit}
+%\clearpage
+\input{Figures/fig-gantt.tex}
+%\input{Figures/fig-roadmap.tex}
 
-\clearpage
-\section{Quality}
-\cite{zuccato2008illicit} is a fun
-\cite{kolpin2002pharmaceuticals}
-
-% \input{sec-abstract.tex}
-% \input{sec-excellence.tex}
-% \input{sec-impact.tex}
-% \input{sec-impact-summary.tex}
-
-
-%\input{sec-quality.tex}
+% \vspace{20mm}
 %------------------------------------------------------------------------------
 %\input{Figures/letters-of-support.tex}
 
@@ -200,6 +124,9 @@ hi \cite{zuccato2008illicit}
 % \setlength{\baselineskip}{0mm}
 %\setlength\bibitemsep{0mm}
 % \boldname{Manthanwar}{Amit M.}{A. M.}
+
+% \addbibresource{references.bib}
+
 
 \renewcommand*{\bibfont}{\normalfont\footnotesize}
 \setlength{\bibitemsep}{-0.5\itemsep}

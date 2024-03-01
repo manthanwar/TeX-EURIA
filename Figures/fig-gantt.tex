@@ -1,0 +1,200 @@
+%\clearpage
+%\subsubsection{Project management Gantt chart}
+%\subsubsection{Gantt chart}
+%==============================================================================
+%------------------------------------------------------------------------------
+%==============================================================================
+\figGanttChart{
+%------------------------------------------------------------------------------
+\gantttitlelist[title/.style={fill=teal!5,draw={gray!90}},
+title height=1,
+title label text=\Large\textbf{Year #1}]{1,...,3}{12} \ganttnewline
+%------------------------------------------------------------------------------
+\gantttitlelist[title/.style={fill=teal!5,draw={gray!90}},
+title height=0.8,
+%title label text=\normalsize{#1}
+]
+%{2,4,...,48}{1} \\
+{1,...,36}{1} \\
+%------------------------------------------------------------------------------
+%\draw[style={draw=black!60,
+%dashed, dash pattern=on 0.4mm off 0.4mm, line width=1pt}]
+%(17.5,-2)--(17.5,-30);
+%------------------------------------------------------------------------------
+% GANT START - WP1
+%------------------------------------------------------------------------------
+\ganttStyleWPi\ganttgroup[			, name=	WP1	]{	WP1	}{	1	}{	30	}\\
+\ganttbar[			, name=	T11	]{	Task 1.1	}{	1	}{	16	}\\
+\ganttlinkedmilestone[			,name=	M11	]{	Milestone 1.1	}{	9			}\\
+\ganttlinkedbar[			, name=	T12	]{	Task 1.2	}{	3	}{	12	}\\
+\ganttlinkedbar[			, name=	T13	]{	Task 1.3	}{	6	}{	20	}\\
+\ganttlinkedbar[			, name=	T14	]{	Task 1.4	}{	9	}{	20	}\\
+\ganttlinkedbar[			, name=	T15	]{	Task 1.5	}{	17	}{	28	}\\
+\ganttlinkedbar[			, name=	T16	]{	Task 1.6	}{	24	}{	30	}\\
+											
+\ganttStyleWPii\ganttgroup[			, name=	WP2	]{	WP2	}{	1	}{	32	}\\
+\ganttbar[			, name=	T21	]{	Task 2.1	}{	1	}{	28	}\\
+\ganttlinkedbar[			, name=	T22	]{	Task 2.2	}{	12	}{	32	}\\
+\ganttlinkedmilestone[			,name=	M22	]{	Milestone 2.2	}{	6			}\\
+\ganttlinkedbar[			, name=	T23	]{	Task 2.3	}{	7	}{	20	}\\
+\ganttbar[			, name=	T24	]{	Task 2.4	}{	7	}{	29	}\\
+\ganttbar[			, name=	T25	]{	Task 2.5	}{	3	}{	12	}\\
+\ganttlinkedbar[			, name=	T26	]{	Task 2.6	}{	9	}{	32	}\\
+											
+\ganttStyleWPiii\ganttgroup[			, name=	WP3	]{	WP3	}{	1	}{	34	}\\
+\ganttbar[			, name=	T31	]{	Task 3.1	}{	10	}{	34	}\\
+\ganttlinkedmilestone[			,name=	M31	]{	Milestone 3.1	}{	6			}\\
+\ganttbar[			, name=	T32	]{	Task 3.2	}{	3	}{	34	}\\
+\ganttlinkedbar[			, name=	T33	]{	Task 3.3	}{	9	}{	34	}\\
+\ganttbar[			, name=	T34	]{	Task 3.4	}{	3	}{	34	}\\
+\ganttlinkedbar[			, name=	T35	]{	Task 3.5	}{	7	}{	34	}\\
+\ganttlinkedbar[			, name=	T36	]{	Task 3.6	}{	7	}{	34	}\\
+											
+\ganttStyleWPiv\ganttgroup[			, name=	WP4	]{	WP4	}{	1	}{	35	}\\
+\ganttbar[			, name=	T41	]{	Task 4.1	}{	10	}{	16	}\\
+\ganttlinkedmilestone[			,name=	M41	]{	Milestone 4.1	}{	6			}\\
+\ganttlinkedbar[			, name=	T42	]{	Task 4.2	}{	7	}{	35	}\\
+\ganttbar[			, name=	T43	]{	Task 4.3	}{	3	}{	24	}\\
+\ganttlinkedbar[			, name=	T44	]{	Task 4.4	}{	9	}{	28	}\\
+\ganttlinkedbar[			, name=	T45	]{	Task 4.5	}{	9	}{	30	}\\
+											
+\ganttStyleWPv\ganttgroup[			, name=	WP5	]{	WP5	}{	28	}{	35	}\\
+\ganttbar[			, name=	T51	]{	Task 5.1	}{	28	}{	29	}\\
+\ganttbar[			, name=	T52	]{	Task 5.2	}{	29	}{	30	}\\
+\ganttbar[			, name=	T53	]{	Task 5.3	}{	30	}{	32	}\\
+\ganttbar[			, name=	T54	]{	Task 5.4	}{	30	}{	32	}\\
+\ganttbar[			, name=	T55	]{	Task 5.5	}{	32	}{	33	}\\
+\ganttbar[			, name=	T56	]{	Task 5.6	}{	33	}{	34	}\\
+\ganttbar[			, name=	T57	]{	Task 5.7	}{	34	}{	35	}\\
+											
+\ganttStyleWPvi\ganttgroup[			, name=	WP6	]{	WP6	}{	1	}{	36	}\\
+\ganttbar[			, name=	T61	]{	Task 6.1	}{	1	}{	36	}\\
+\ganttbar[			, name=	T62	]{	Task 6.2	}{	1	}{	36	}\\
+\ganttbar[			, name=	T63	]{	Task 6.3	}{	12	}{	36	}\\
+\ganttbar[			, name=	T64	]{	Task 6.4	}{	20	}{	36	}\\
+\ganttbar[			, name=	T65	]{	Task 6.5	}{	28	}{	36	}\\
+\ganttbar[			, name=	T66	]{	Task 6.6	}{	35	}{	36	}\\
+
+
+
+
+\ganttset{link/.style={->, red, rounded corners=1mm},
+link mid=0.3}
+\ganttlink{T13}{T12}
+
+
+\ganttset{link/.style={->, blue, rounded corners=1mm},
+link mid=0.55, link bulge=1}
+\ganttlink{M11}{T12}
+
+%
+%
+%\ganttlink[link type=s-s, link/.append style={red, thick},
+%link label node/.style={below right=9mm and 1mm},
+%link label font=\tiny,
+%link label={start-to-start}]{T11}{T14}
+%
+
+
+%\ganttset{%link type=f-s,
+%link/.style={->, Green!90!black, thick, rounded corners=1mm,
+%dashed, dash pattern=on 0.6mm off 0.6mm},
+%link mid=0.5, link bulge=0.51}
+%\ganttlink{T42}{T44}
+
+
+%Orange!90!black
+\ganttset{link/.style={->, orange, rounded corners=1mm, thick,
+dashed, dash pattern=on 0.6mm off 0.6mm},
+link mid=0.93, link bulge=1.59}
+\ganttlink{M22}{T24}
+\ganttlink{M31}{T34}
+\ganttlink{M41}{T43}
+
+%\ganttset{link/.style={->, Green, rounded corners=1mm, thick,
+%dashed, dash pattern=on 0.6mm off 0.6mm},
+%link mid=0.2855, link bulge=1}
+%\ganttlink{M11}{T31}
+%
+%\ganttset{link/.style={->, teal, rounded corners=1mm, thick,
+%dashed, dash pattern=on 0.6mm off 0.6mm},
+%link mid=0.23, link bulge=1}
+%\ganttlink{T32}{T34}
+%
+%    \ganttset{link/.style={->, TealBlue, rounded corners=1mm, thick,
+%    dashed, dash pattern=on 0.6mm off 0.6mm},
+%    link mid=0.1, link bulge=0.99}
+%    \ganttlink{T33}{T42}
+%
+%
+%    \ganttset{link/.style={->, red, rounded corners=1mm, thick,
+%    dashed, dash pattern=on 0.6mm off 0.6mm},
+%    link mid=0.13, link bulge=2.989}
+%    \ganttlink{T17}{T43}
+%
+%
+%    \ganttset{link/.style={->, violet, rounded corners=1mm, thick,
+%    dashed, dash pattern=on 0.6mm off 0.6mm},
+%    link mid=0.3588, link bulge=1}
+%    \ganttlink{M11}{T25}
+%
+%\ganttset{link/.style={->, cyan!80!black, thick,
+%dashed, dash pattern=on 0.6mm off 0.6mm},
+%link mid=0.1, link bulge=0.5}
+%\ganttlink{T42}{T25}
+
+
+%\ganttset{link type=f-s,
+%link label node/.style={below right=78mm and 1mm, cyan!80!black},
+%link/.style={->, cyan!90!black, rounded corners=1mm, thick,
+%dashed,dash pattern=on 0.6mm off 0.6mm},
+%link mid=0.75, link bulge=2}
+%\ganttlink{T11}{T41}
+
+
+
+%\draw[style={->, orange!90!black,dashed, thick,
+%dash pattern=on 0.6mm off 0.6mm}](9.49,-20.52)--(9.49,-13.45)--(11.5,-13.45);
+
+
+
+\ganttset{today=1,
+today rule/.style={ draw=black!60,
+dashed, dash pattern=on 0.4mm off 0.4mm, line width=1pt},
+today label font=\scshape,
+today offset=2,
+today label={Kick-off}}
+
+
+
+\ganttvrule[
+vrule/.append style={draw=black!60, dashed,
+dash pattern=on 0.4mm off 0.4mm, line width=1pt},
+%vrule offset=.2,
+%vrule label node/.append style={anchor=north west}
+vrule label font=\scshape,
+]{Closure}{35}
+
+
+\ganttvrule[
+vrule/.append style={Maroon, solid},
+%vrule label font=\Large,
+%vrule offset=.2,
+%vrule label node/.append style={anchor=north west}
+]{critical progress line}{12}
+
+
+
+
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%\ganttnewline[thick, blue]
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%\ganttlink{T11}{T12}
+%\ganttlink{T12}{M11}
+%\ganttlink{elem3}{elem4}
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+
+} 

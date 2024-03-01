@@ -116,22 +116,3 @@ build: latexbiber run
 run:
 	@sumatrapdf ${file}.pdf &
 
-
-# dodo:
-# 	@make pdflatex
-# 	@make biber
-# 	@make pdflatex
-# 	@make cleanall
-# 	@make run
-# 	@# code ${file}.pdf
-# 	@# @ls
-
-#  ETIMEN = @read timestarted < $@_timeNano ; \
-# timestopped=$$((`date '+%s%3N'`));\
-# timeelapsed=$$(($$timestopped - $$timestarted)) ;\
-# echo "started  = " $$((timestarted));\
-# echo "stopped  = " $$((timestopped));\
-# echo "elapsed  = " $$((timeelapsed));\
-# python -c "print('startedp =',$$((timestarted)))";\
-# python -c "print('stoppedp =',$$((timestopped)))";\
-# python -c "print('elapsedp =',($$((timestopped))-$$((timestarted)))/1000,'s')"
