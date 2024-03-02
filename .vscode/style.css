@@ -1,0 +1,20 @@
+ul {
+  list-style-type: circle;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+ul.b {
+  list-style-type: circle;
+}
+
+
+h1{
+    /* color: blue; */
+}
+
+
+p {
+  /* line-height: 32px; */
+  /* margin-bottom: 10px; */
+  }
